@@ -1,0 +1,8 @@
+{
+    "maxHealth": 100,
+    "startHealth": 100,
+    "startCrystals": 8,
+    "startHerbs": 10,
+    "travelSpeed": 60,
+    "travelHealth": 1
+}

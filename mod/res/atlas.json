@@ -1,0 +1,38 @@
+[
+{
+    "name": "icoville",
+    "tag": "town1a",
+    "x": 185,
+    "y": 91
+},
+{
+    "name": "bondville",
+    "tag": "town2a",
+    "x": 123,
+    "y": 89
+},
+{
+    "name": "booville",
+    "tag": "town1a",
+    "x": 25,
+    "y": 35 
+},
+{
+    "name": "ludumgrad",
+    "tag": "town1a",
+    "x": 115,
+    "y": 2 
+},
+{
+    "name": "dareburg",
+    "tag": "town1a",
+    "x": 260,
+    "y": 20 
+},
+{
+    "name": "westburg",
+    "tag": "town1a",
+    "x": 30,
+    "y": 100
+}
+]

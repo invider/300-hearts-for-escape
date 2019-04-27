@@ -1,0 +1,17 @@
+{
+    "base": "#171818",
+    "font": "8px boo-city",
+    "content": "#c0b020",
+    "hint": {
+        "font": "8px boo-city",
+        "content": "#a05010"
+    },
+    "panel": {
+        "font": "12px boo-city",
+        "content": "#301000",
+        "itemBase": 9,
+        "itemsRelativeBase": 0.5,
+        "textSpacing": 2,
+        "itemSpacing": 8
+    }
+}

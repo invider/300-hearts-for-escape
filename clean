@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -rf out
+rm -rf node_modules
+
