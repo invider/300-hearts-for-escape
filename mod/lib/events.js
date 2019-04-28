@@ -27,4 +27,15 @@ module.exports = [
             res.prices.crystals = Math.ceil(res.prices.crystals * 3 / 2);
         }
     },
+    {
+        "message": "A terrible monsters have eaten all resources",
+        "exec": function(res){
+            res.resources.crystals = 0;
+            res.resources.crystals = 0;
+            res.resources.herbs = 0;
+            res.prices.herbs = 0;
+        }
+    },
+]
+
 ]
