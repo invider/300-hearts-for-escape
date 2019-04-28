@@ -8,8 +8,8 @@ const defaults = {
 
     x: 0,
     y: 0,
-    w: 640,
-    h: 480,
+    w: 320,
+    h: 200,
     border: 0,
 }
 

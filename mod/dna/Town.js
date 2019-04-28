@@ -36,7 +36,8 @@ Town.prototype.onMouseUp = function() {
 }
 
 Town.prototype.onClick = function() {
-    lab.hero.travelTo(this)
+    lab.hero.toMarket(this) // try to go to market
+    lab.hero.travelTo(this) // try to travel
 }
 
 Town.prototype.draw = function() {

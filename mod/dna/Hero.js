@@ -13,6 +13,11 @@ const Hero = function(dat) {
     sys.augment(this, dat)
 }
 
+Hero.prototype.toMarket = function(town) {
+    if (this.location !== town) return
+    lab.hud.market.show()
+}
+
 Hero.prototype.travelTo = function(town) {
     if (this.location === town) return
     const days = this.location.daysToTarget(town)

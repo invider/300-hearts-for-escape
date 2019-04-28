@@ -17,6 +17,14 @@ const MapScreen = function(dat) {
 }
 MapScreen.prototype = Object.create(Screen.prototype)
 
+MapScreen.prototype.pause = function() {
+    this.paused = true
+}
+
+MapScreen.prototype.resume = function() {
+    this.paused = false
+}
+
 MapScreen.prototype.populate = function() {
     atlas.forEach(t => {
         const town = sys.spawn('Town', t, this)
