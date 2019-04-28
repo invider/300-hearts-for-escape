@@ -36,4 +36,21 @@ module.exports = [
             res.prices.herbs = 0;
         }
     },
+    {
+        "message": "Gnome caravan with a lot of gems has arrived to this town recently",
+        "exec": function(res){
+            res.resources.gems = res.resources.gems * 2;
+            res.prices.gems = Math.ceil(res.prices.gems / 2);
+        }
+    },
+    {
+        "message": "This year's harvest of herbs was very good",
+        "exec": function(res){
+            res.resources.herbs = res.resources.herbs * 2;
+            res.prices.herbs = Math.ceil(res.prices.herbs / 2);
+        }
+    }
+
+
+
 ];
