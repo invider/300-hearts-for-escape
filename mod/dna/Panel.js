@@ -47,6 +47,7 @@ Panel.prototype.drawText = function(text, baseX, direction) {
 }
 
 Panel.prototype.draw = function() {
+    if (this.__.paused) return
     const img = res.ui.back
 
     ctx.drawImage(img, this.x, this.y, this.w, this.h)

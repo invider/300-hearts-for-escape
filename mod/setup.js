@@ -13,6 +13,13 @@ module.exports = function setup() {
     }, 'hud')
     island.adjust()
 
+    const market = sys.spawn('MarketScreen', {
+        Z: 12,
+        name: 'market',
+    }, 'hud')
+    market.adjust()
+    market.hide()
+
     const hero = sys.spawn('Hero', {
         name: 'hero',
         location: lib.math.rnde(island.townList),
