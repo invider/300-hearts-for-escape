@@ -5,6 +5,7 @@ const Town = function(dat) {
     this.w = 0
     this.h = 0
     this.visited = false
+    this.stats = lib.default.genParamsForTown();
 
     sys.augment(this, dat)
 
@@ -15,6 +16,14 @@ const Town = function(dat) {
 Town.prototype.daysToTarget = function(target) {
     const d = lib.math.distance(this.x, this.y, target.x, target.y)
     return Math.ceil(d/env.tuning.travelSpeed)
+}
+
+Town.prototype.arrive = function(){
+    this.resources = lib.default.genParamsForTown();
+}
+
+Town.prototype.departed = function(){
+    
 }
 
 Town.prototype.onFocus = function() {}
