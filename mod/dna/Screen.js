@@ -69,6 +69,14 @@ Screen.prototype.onDblClick = function(x, y, e) {
     Container.prototype.onDblClick.call(this, x/this.scale, y/this.scale, e)
 }
 
+Screen.prototype.onMouseDown = function(x, y, b, e) {
+    Container.prototype.onMouseDown.call(this, x/this.scale, y/this.scale, b, e)
+}
+
+Screen.prototype.onMouseUp = function(x, y, b, e) {
+    Container.prototype.onMouseUp.call(this, x/this.scale, y/this.scale, b, e)
+}
+
 Screen.prototype.onMouseMove = function(x, y, e) {
     env.debug.Mouse = '' + Math.round(x/this.scale) + 'x' + Math.round(y/this.scale)
     Container.prototype.onMouseMove.call(this, x/this.scale, y/this.scale, e)

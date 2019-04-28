@@ -16,10 +16,31 @@ Town.prototype.daysToTarget = function(target) {
     return Math.ceil(d/env.tuning.travelSpeed)
 }
 
+Town.prototype.onFocus = function() {
+    log.out('focused')
+}
+
+Town.prototype.onReleasedFocus = function() {
+    log.out('unfocused')
+}
+
 Town.prototype.onMouseMove = function() {}
 
 Town.prototype.onMouseEnter = function() {
     lib.sfx(res.sfx.select, 0.4)
+}
+
+Town.prototype.onMouseLeave = function() {
+    console.log('leave')
+}
+
+Town.prototype.onMouseDown = function() {
+    log.out('down')
+    this.toggled = true
+}
+
+Town.prototype.onMouseUp = function() {
+    this.toggled = false
 }
 
 Town.prototype.onClick = function() {
@@ -33,8 +54,10 @@ Town.prototype.draw = function() {
 
     let f = 0
     let img = this.img1
-    if (this._hover) {
-        f = 1
+    if (this.toggled) {
+        f = env.style.town.selectedScale
+    } else if (this._hover) {
+        f = env.style.town.hoverScale
         img = this.img2
     }
 
