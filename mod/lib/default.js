@@ -13,8 +13,13 @@ module.exports = {
                 crystals: 1
             },
             message:"Something strange happened, please check code"
+        };
+        let ev;
+        if (env.turn < lib.predefinedEvents.length){
+            ev = lib.predefinedEvents[env.turn];
+        } else {
+            ev = lib.math.rnde(lib.events);
         }
-        let ev = lib.math.rnde(lib.events);        
         ev.exec(res);
         res.message = ev.message;
         return res;
