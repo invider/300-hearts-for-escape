@@ -36,6 +36,4 @@ module.exports = [
             res.prices.herbs = 0;
         }
     },
-]
-
-]
+];
