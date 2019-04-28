@@ -25,5 +25,11 @@
         "lineStep": 20,
         "font": "12px boo-city",
         "content": "#301000"
+    },
+    "popup": {
+        "font": "10px boo-city",
+        "content": "#301000",
+        "margin": 5, 
+        "lineSpacing": 12
     }
 }

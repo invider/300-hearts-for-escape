@@ -15,8 +15,8 @@ module.exports = {
             message:"Something strange happened, please check code"
         };
         let ev;
-        if (env.turn < lib.predefinedEvents.length){
-            ev = lib.predefinedEvents[env.turn];
+        if (env.turn-1 < lib.predefinedEvents.length){
+            ev = lib.predefinedEvents[env.turn-1];
         } else {
             ev = lib.math.rnde(lib.events);
         }

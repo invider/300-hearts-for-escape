@@ -25,7 +25,7 @@ Hero.prototype.arrived = function(town) {
 }
 
 Hero.prototype.travelTo = function(town) {
-    if (this.location === town) return
+    if (!town || this.location === town) return
     const days = this.location.daysToTarget(town)
     env.day += days
     this.health -= days * env.tuning.travelHealth
@@ -33,6 +33,8 @@ Hero.prototype.travelTo = function(town) {
     env.turn ++
     this.arrived(town)
     lib.sfx(res.sfx.teleport, 0.1)
+
+    lab.hud.popup.show(town.stats.message)
 }
 
 module.exports = Hero

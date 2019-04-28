@@ -20,14 +20,24 @@ module.exports = function setup() {
     market.adjust()
     market.hide()
 
+    const popup = sys.spawn('Popup', {
+        Z: 14,
+        name: 'popup'
+    }, 'hud')
+    popup.adjust()
+
+
     const hero = sys.spawn('Hero', {
         name: 'hero',
     }, '')
     hero.arrived(island.townList[0])
 
     env.day = 1
-    env.turn = 1
+    env.turn = 0
 
     env.debug = {}
     mod.debug.env.info = env.debug
+
+    popup.show('test message!')
+    
 }
