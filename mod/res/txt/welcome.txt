@@ -1,1 +1,3 @@
-Welcome to the Island of Plague!
+You find yourself on an island.
+You feel sick.
+Travel to the nearest village to find help.
