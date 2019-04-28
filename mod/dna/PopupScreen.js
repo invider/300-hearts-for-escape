@@ -4,6 +4,7 @@
 const Screen = dna.Screen
 
 const PopupScreen = function(dat) {
+    this.text = ''
     this.background = res.ui.alert_back
     sys.augment(dat) // don't know why, but need it to work
     Screen.call(this, dat)
@@ -38,6 +39,35 @@ PopupScreen.prototype.adjust = function() {
     const axis = this._w/2
     this.close.x = axis - this.close.w/2
     this.close.y = this._h - this.close.h - 8
+
+    this.formatText()
+}
+
+PopupScreen.prototype.formatText = function() {
+    const paragraphs = this.text.split('\n')
+    const textWidth = this._w - env.style.popup.margin*2
+    ctx.font = env.style.popup.font
+
+    const text = []
+    paragraphs.forEach(paragraph => {
+        const words = paragraph.split(' ')
+        let curLine = ''
+        words.forEach(w => {
+            let nextLine
+            if (curLine.length === 0) nextLine = w
+            else nextLine = curLine + ' ' + w
+
+            const tw = ctx.measureText(nextLine).width
+            if (tw > textWidth) {
+                text.push(curLine)
+                curLine = w
+            } else {
+                curLine = nextLine
+            }
+        })
+        text.push(curLine)
+    })
+    this.lines = text
 }
 
 PopupScreen.prototype.show = function(text) {
@@ -53,8 +83,8 @@ PopupScreen.prototype.hide = function() {
 }
 
 PopupScreen.prototype.drawText = function() {
-    const lines = this.text.split('\n')
-    const h = lines.length * env.style.popup.lineSpacing
+    this.formatText()
+    const h = this.lines.length * env.style.popup.lineSpacing
 
     const baseX = env.style.popup.margin
     let curY = (this._h - h)/2
@@ -64,7 +94,7 @@ PopupScreen.prototype.drawText = function() {
     ctx.textAlign = 'left'
     ctx.textBaseline = 'middle'
 
-    lines.forEach(l => {
+    this.lines.forEach(l => {
         ctx.fillText(l, baseX, curY)
         curY += env.style.popup.lineSpacing
     })

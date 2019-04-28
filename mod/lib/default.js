@@ -3,7 +3,7 @@
 module.exports = {
     genParamsForTown: function(params){
         params = params || {};
-        var res = {
+        var rs = {
             resources:{
                 herbs: 10,
                 crystals: 10
@@ -17,11 +17,12 @@ module.exports = {
         let ev;
         if (env.turn-1 < lib.predefinedEvents.length){
             ev = lib.predefinedEvents[env.turn-1];
+            rs.message = res.txt.startup[env.turn-1]
         } else {
             ev = lib.math.rnde(lib.events);
+            rs.message = res.txt.event[lib.events.indexOf(ev)]
         }
-        ev.exec(res);
-        res.message = ev.message;
-        return res;
+        ev.exec(rs);
+        return rs;
     }
 }

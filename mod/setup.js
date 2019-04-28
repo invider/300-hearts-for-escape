@@ -35,9 +35,9 @@ module.exports = function setup() {
     env.day = 1
     env.turn = 0
 
+    popup.show(res.txt.welcome)
+
     env.debug = {}
     mod.debug.env.info = env.debug
-
-    popup.show('test message!')
-    
+    mod.debug.hidden = true
 }

@@ -13,6 +13,9 @@ const Hero = function(dat) {
     sys.augment(this, dat)
 }
 
+Hero.prototype.init = function() {
+}
+
 Hero.prototype.toMarket = function(town) {
     if (this.location !== town) return
     lab.hud.market.show()

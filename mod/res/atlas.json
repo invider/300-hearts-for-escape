@@ -1,24 +1,30 @@
 [
 {
-    "name": "portville",
+    "name": "sandville",
+    "tag": "town7a",
+    "x": 16,
+    "y": 52 
+},
+{
+    "name": "port of hope",
     "tag": "town1a",
     "x": 185,
     "y": 91
 },
 {
-    "name": "bondville",
+    "name": "central town",
     "tag": "town2a",
     "x": 123,
     "y": 89
 },
 {
-    "name": "booville",
+    "name": "lonelake",
     "tag": "town3a",
     "x": 195,
     "y": 39 
 },
 {
-    "name": "westburg",
+    "name": "dareburg",
     "tag": "town4a",
     "x": 28,
     "y": 120 
@@ -30,15 +36,9 @@
     "y": 22
 },
 {
-    "name": "dareburg",
+    "name": "cape of despair",
     "tag": "town6a",
     "x": 258,
     "y": 48
-},
-{
-    "name": "sandville",
-    "tag": "town7a",
-    "x": 16,
-    "y": 52 
 }
 ]

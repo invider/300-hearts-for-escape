@@ -19,6 +19,10 @@ const Screen = function(dat) {
 }
 Screen.prototype = Object.create(Container.prototype)
 
+Screen.prototype.init = function() {
+    this.adjust()
+}
+
 Screen.prototype.adjust = function() {
     // calculate scale
     const aspect = this.background.width/this.background.height
