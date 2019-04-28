@@ -13,10 +13,11 @@ module.exports = function setup() {
     }, 'hud')
     island.adjust()
 
-    sys.spawn('Hero', {
+    const hero = sys.spawn('Hero', {
         name: 'hero',
         location: lib.math.rnde(island.townList),
     }, '')
+    hero.location.visited = true
 
     env.day = 1
 

@@ -4,6 +4,7 @@ const Town = function(dat) {
     this.Z = 1
     this.w = 0
     this.h = 0
+    this.visited = false
 
     sys.augment(this, dat)
 
@@ -16,26 +17,17 @@ Town.prototype.daysToTarget = function(target) {
     return Math.ceil(d/env.tuning.travelSpeed)
 }
 
-Town.prototype.onFocus = function() {
-    log.out('focused')
-}
-
-Town.prototype.onReleasedFocus = function() {
-    log.out('unfocused')
-}
+Town.prototype.onFocus = function() {}
 
 Town.prototype.onMouseMove = function() {}
+
+Town.prototype.onMouseDrag = function() {}
 
 Town.prototype.onMouseEnter = function() {
     lib.sfx(res.sfx.select, 0.4)
 }
 
-Town.prototype.onMouseLeave = function() {
-    console.log('leave')
-}
-
 Town.prototype.onMouseDown = function() {
-    log.out('down')
     this.toggled = true
 }
 
@@ -54,7 +46,7 @@ Town.prototype.draw = function() {
 
     let f = 0
     let img = this.img1
-    if (this.toggled) {
+    if (this._captured && this._hover) {
         f = env.style.town.selectedScale
     } else if (this._hover) {
         f = env.style.town.hoverScale
@@ -67,22 +59,33 @@ Town.prototype.draw = function() {
         this.w+f*2, this.h+f*2)
 
     ctx.font = env.style.font
+    if (lab.hero.location === this) ctx.fillStyle = env.style.town.current
+    else if (this.visited) ctx.fillStyle = env.style.town.visited
+    else ctx.fillStyle = env.style.town.unknown
     ctx.textAlign = "center"
     ctx.textBaseline = "middle"
-    ctx.fillStyle = env.style.content
     ctx.fillText(this.name,
         this.x + this.w/2,
         this.y + this.h + 5)
 
-    if (this._hover && lab.hero.location !== this) {
-        // calculate and show days to travel
-        let days = lab.hero.location.daysToTarget(this)
+    if (this._hover) {
+        if (lab.hero.location === this) {
+            ctx.font = env.style.hint.font
+            ctx.fillStyle = env.style.hint.content
+            ctx.fillText('(to the market)',
+                this.x + this.w/2,
+                this.y + this.h + 14)
 
-        ctx.font = env.style.hint.font
-        ctx.fillStyle = env.style.hint.content
-        ctx.fillText('(get in ' + days + ' days)',
-            this.x + this.w/2,
-            this.y + this.h + 14)
+        } else {
+            // calculate and show days to travel
+            let days = lab.hero.location.daysToTarget(this)
+
+            ctx.font = env.style.hint.font
+            ctx.fillStyle = env.style.hint.content
+            ctx.fillText('(get in ' + days + ' days)',
+                this.x + this.w/2,
+                this.y + this.h + 14)
+        }
     }
     //ctx.lineWidth = 3
     //ctx.strokeStyle = '#ffff00'

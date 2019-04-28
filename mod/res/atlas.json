@@ -13,10 +13,18 @@
 },
 {
     "name": "booville",
-    "tag": "town1a",
-    "x": 25,
-    "y": 35 
+    "tag": "town3a",
+    "x": 195,
+    "y": 39 
 },
+{
+    "name": "westburg",
+    "tag": "town4a",
+    "x": 28,
+    "y": 120 
+},
+
+
 {
     "name": "ludumgrad",
     "tag": "town1a",
@@ -28,11 +36,5 @@
     "tag": "town1a",
     "x": 260,
     "y": 20 
-},
-{
-    "name": "westburg",
-    "tag": "town1a",
-    "x": 30,
-    "y": 100
 }
 ]

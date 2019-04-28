@@ -3,8 +3,11 @@
     "font": "8px boo-city",
     "content": "#c0b020",
     "town": {
-        "hoverScale": 2,
-        "selectedScale": -2
+        "current": "#40e010",
+        "visited": "#c0b020",
+        "unknown": "#727070",
+        "hoverScale": 1,
+        "selectedScale": -1
     },
     "hint": {
         "font": "8px boo-city",

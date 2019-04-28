@@ -20,6 +20,7 @@ Hero.prototype.travelTo = function(town) {
     this.health -= days * env.tuning.travelHealth
 
     this.location = town
+    this.location.visited = true
     lib.sfx(res.sfx.teleport, 0.1)
 }
 
