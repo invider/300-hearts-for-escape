@@ -63,10 +63,10 @@ Panel.prototype.draw = function() {
 
     curX = this.w - baseX
     curX += this.drawText('' + Math.floor(lab.hero.crystals), curX, -1) - tab
-    curX += this.drawImage(res.ui.crystal, curX, -1) - env.style.panel.itemSpacing
+    curX += this.drawImage(res.goods.crystals, curX, -1) - env.style.panel.itemSpacing
 
     curX += this.drawText('' + Math.floor(lab.hero.herbs), curX, -1) - tab
-    curX += this.drawImage(res.ui.herbs, curX, -1)
+    curX += this.drawImage(res.goods.herbs, curX, -1)
 }
 
 module.exports = Panel

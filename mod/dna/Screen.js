@@ -78,7 +78,6 @@ Screen.prototype.onMouseUp = function(x, y, b, e) {
 }
 
 Screen.prototype.onMouseMove = function(x, y, e) {
-    env.debug.Mouse = '' + Math.round(x/this.scale) + 'x' + Math.round(y/this.scale)
     Container.prototype.onMouseMove.call(this, x/this.scale, y/this.scale, e)
 }
 

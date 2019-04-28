@@ -1,6 +1,6 @@
 [
 {
-    "name": "icoville",
+    "name": "portville",
     "tag": "town1a",
     "x": 185,
     "y": 91
@@ -23,18 +23,22 @@
     "x": 28,
     "y": 120 
 },
-
-
 {
     "name": "ludumgrad",
-    "tag": "town1a",
-    "x": 115,
-    "y": 2 
+    "tag": "town5a",
+    "x": 87,
+    "y": 22
 },
 {
     "name": "dareburg",
-    "tag": "town1a",
-    "x": 260,
-    "y": 20 
+    "tag": "town6a",
+    "x": 258,
+    "y": 48
+},
+{
+    "name": "sandville",
+    "tag": "town7a",
+    "x": 16,
+    "y": 52 
 }
 ]

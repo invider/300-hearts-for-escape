@@ -19,7 +19,7 @@ Town.prototype.daysToTarget = function(target) {
 }
 
 Town.prototype.arrive = function(){
-    this.resources = lib.default.genParamsForTown();
+    this.stats = lib.default.genParamsForTown();
 }
 
 Town.prototype.departed = function(){

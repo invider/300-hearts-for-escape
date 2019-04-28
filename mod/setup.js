@@ -22,11 +22,11 @@ module.exports = function setup() {
 
     const hero = sys.spawn('Hero', {
         name: 'hero',
-        location: lib.math.rnde(island.townList),
     }, '')
-    hero.location.visited = true
+    hero.arrived(island.townList[0])
 
     env.day = 1
+    env.turn = 1
 
     env.debug = {}
     mod.debug.env.info = env.debug

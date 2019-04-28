@@ -18,14 +18,20 @@ Hero.prototype.toMarket = function(town) {
     lab.hud.market.show()
 }
 
+Hero.prototype.arrived = function(town) {
+    this.location = town
+    this.location.visited = true
+    this.location.arrive()
+}
+
 Hero.prototype.travelTo = function(town) {
     if (this.location === town) return
     const days = this.location.daysToTarget(town)
     env.day += days
     this.health -= days * env.tuning.travelHealth
 
-    this.location = town
-    this.location.visited = true
+    env.turn ++
+    this.arrived(town)
     lib.sfx(res.sfx.teleport, 0.1)
 }
 

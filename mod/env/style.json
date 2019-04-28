@@ -20,5 +20,10 @@
         "itemsRelativeBase": 0.5,
         "textSpacing": 2,
         "itemSpacing": 8
+    },
+    "market": {
+        "lineStep": 20,
+        "font": "12px boo-city",
+        "content": "#301000"
     }
 }
