@@ -31,7 +31,9 @@ const PopupScreen = function(dat) {
         },
         onFocus: function() {},
         onClick: function() {
+            lib.sfx(res.sfx.click)
             popup.hide()
+            if (sys.isFun(popup.postAction)) popup.postAction()
         },
         onKeyDown: function(e) {
             if (e.key === 'Enter' || e.key === 'Escape') {
@@ -59,6 +61,7 @@ const PopupScreen = function(dat) {
         onFocus: function() {},
         onClick: function() {
             popup.cursor += popup.nextBatch
+            lib.sfx(res.sfx.click)
         },
         onKeyDown: function(e) {
             if (e.key === 'Enter' || e.key === 'Escape') {
@@ -157,7 +160,6 @@ PopupScreen.prototype.drawText = function() {
     const limit = this.cursor + linesToShow
     for (let i = this.cursor; i < limit; i++) {
         let l = this.lines[i]
-        if (l == '') l = '.'
         ctx.fillText(l, baseX, curY)
         curY += env.style.popup.lineSpacing
     }

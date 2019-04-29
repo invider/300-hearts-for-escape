@@ -22,10 +22,20 @@ MapScreen.prototype.pause = function() {
 }
 
 MapScreen.prototype.resume = function() {
+    if (env.gameover) return
+
     this._ls.forEach(e => {
         if (e._hover) e._hover = false
     })
     this.disabled = false
+}
+
+MapScreen.prototype.stop = function() {
+    this._ls.forEach(e => {
+        if (e._hover) e._hover = false
+    })
+    this.disabled = true
+    env.gameover = true
 }
 
 MapScreen.prototype.populate = function() {

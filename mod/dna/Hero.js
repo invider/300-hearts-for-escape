@@ -18,6 +18,20 @@ const Hero = function(dat) {
 Hero.prototype.init = function() {
 }
 
+Hero.prototype.die = function() {
+    this.health = 0
+    lab.hud.island.ship.leave()
+    lab.hud.popup.show(
+        'You died!/'
+        + ' / '
+        + 'You survived for ' + env.day + ' days,/'
+        + 'but desiase was stronger...')
+    lab.hud.popup.postAction = function() {
+        trap('restart')
+    }
+    lab.hud.island.stop()
+}
+
 Hero.prototype.toMarket = function(town) {
     if (this.location !== town) return
     lab.hud.market.show()
@@ -39,12 +53,16 @@ Hero.prototype.travelTo = function(town) {
 
     env.turn ++
     this.arrived(town)
-    lib.sfx(res.sfx.teleport, 0.1)
+    lib.sfx(res.sfx.arrived, 0.3)
 
-    lab.hud.popup.show(
-        '' + days + ' days passed. '
-        + 'Lost ' + bleeding + ' health!\n'
-        + town.stats.message)
+    if (this.health <= 0) {
+        this.die()
+    } else {
+        lab.hud.popup.show(
+            '' + days + ' days passed. '
+            + 'Lost ' + bleeding + ' health!\n'
+            + town.stats.message)
+    }
 }
 
 module.exports = Hero

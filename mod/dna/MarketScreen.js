@@ -14,6 +14,7 @@ const MarketScreen = function(dat) {
         img: res.ui.buttonClose,
 
         onClick: function() {
+            lib.sfx(res.sfx.click)
             market.hide()
         }
     }, this)
@@ -40,12 +41,18 @@ MarketScreen.prototype = Object.create(Screen.prototype)
 
 MarketScreen.prototype.buy = function(rs) {
     const stock = lab.hero.location.stats.resources[rs]
-    if (this.trade[rs] < 0 || this.trade[rs] < stock) this.trade[rs] ++
+    if (this.trade[rs] < 0 || this.trade[rs] < stock) {
+        this.trade[rs] ++
+        lib.sfx(res.sfx.move)
+    }
 }
 
 MarketScreen.prototype.sell = function(rs) {
     const own = lab.hero[rs]
-    if (this.trade[rs] > 0 || this.trade[rs] > -own) this.trade[rs] --
+    if (this.trade[rs] > 0 || this.trade[rs] > -own) {
+        this.trade[rs] --
+        lib.sfx(res.sfx.move)
+    }
 }
 
 MarketScreen.prototype.tradeTotal = function() {
@@ -84,6 +91,7 @@ MarketScreen.prototype.closeTrade = function() {
         }
     })
     this.hide()
+    lib.sfx(res.sfx.pickup)
 }
 
 MarketScreen.prototype.spawnResPair = function(resource, baseY) {

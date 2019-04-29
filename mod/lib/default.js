@@ -35,8 +35,9 @@ module.exports = {
             },
             message:"Something strange happened, please check code"
         };
+
         let ev;
-        if (env.turn-1 < lib.predefinedEvents.length){
+        if ((env.turn > 0) && (env.turn-1 < lib.predefinedEvents.length)){
             ev = lib.predefinedEvents[env.turn-1];
             rs.message = res.txt.startup[env.turn-1]
         } else {

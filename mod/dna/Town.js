@@ -38,7 +38,9 @@ Town.prototype.onMouseMove = function() {}
 Town.prototype.onMouseDrag = function() {}
 
 Town.prototype.onMouseEnter = function() {
-    lib.sfx(res.sfx.select, 0.4)
+    if (!this.locked) {
+        lib.sfx(res.sfx.select, 0.4)
+    }
 }
 
 Town.prototype.onMouseDown = function() {

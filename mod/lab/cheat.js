@@ -9,6 +9,9 @@ let cheatCodes = {
     'unlock': function() {
         lab.hud.island.townList.forEach(t => t.unlock())
     },
+    'visitall': function() {
+        lab.hud.island.townList.forEach(t => t.visited = true)
+    },
     'disable': function() {
         lab.hud.island.townList.forEach(t => t.locked = true)
     },
@@ -17,6 +20,13 @@ let cheatCodes = {
     },
     'bleed': function() {
         lab.hero.health -= 20
+    },
+    'suicide': function() {
+        lab.hero.health = 0
+        lab.hero.die()
+    },
+    'restart': function() {
+        trap('restart')
     },
 }
 
