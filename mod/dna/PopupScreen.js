@@ -36,7 +36,7 @@ const PopupScreen = function(dat) {
             if (sys.isFun(popup.postAction)) popup.postAction()
         },
         onKeyDown: function(e) {
-            if (e.key === 'Enter' || e.key === 'Escape') {
+            if (e.key === 'Enter' || e.key === 'Escape' || e.key === ' ') {
                 this.onClick()
             }
         },
@@ -64,7 +64,7 @@ const PopupScreen = function(dat) {
             lib.sfx(res.sfx.click, 0.6)
         },
         onKeyDown: function(e) {
-            if (e.key === 'Enter' || e.key === 'Escape') {
+            if (e.key === 'Enter' || e.key === 'Escape' || e.key === ' ') {
                 this.onClick()
             }
         },

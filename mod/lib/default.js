@@ -22,18 +22,18 @@ module.exports = {
         params = params || {};
         var rs = {
             resources:{
-                herbs: 10,
-                crystals: 10,
-                potion: 10,
-                gold: 10,
+                herbs: 5 + lib.math.rndi(6),
+                crystals: 3 + lib.math.rndi(4),
+                potion: 2 + lib.math.rndi(3),
+                gold: lib.math.rndi(3),
             },
             prices: {
-                herbs: 1,
-                crystals: 2,
-                potion: 3,
-                gold: 5,
+                herbs: 1 + lib.math.rndi(2),
+                crystals: 2 + lib.math.rndi(1),
+                potion: 3 + lib.math.rndi(2),
+                gold: 5 + lib.math.rndi(5),
             },
-            message:"Something strange happened, please check code"
+            message:"Something strange happened..."
         };
 
         let ev;
@@ -41,10 +41,12 @@ module.exports = {
             ev = lib.predefinedEvents[env.turn-1];
             rs.message = res.txt.startup[env.turn-1]
         } else {
-            ev = lib.math.rnde(lib.events);
+            const ix = Math.floor(Math.random() * lib.events.length)
+            ev = lib.events[ix]
             rs.message = res.txt.event[lib.events.indexOf(ev)]
         }
         ev.exec(rs);
+        rs.ok = ev.ok
         return normalize(rs);
     }
 }

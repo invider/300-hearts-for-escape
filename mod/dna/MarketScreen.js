@@ -9,20 +9,26 @@ const MarketScreen = function(dat) {
     Screen.call(this, dat)
 
     const market = this
-    sys.spawn('ImageButton', {
+    const close = sys.spawn('ImageButton', {
         name: 'close',
         img: res.ui.buttonClose,
 
         onClick: function() {
+            if (sys.isFun(market.tradeGate)) {
+                if (!market.tradeGate(close)) return
+            }
             market.hide()
             lib.sfx(res.sfx.click, 0.6)
         }
     }, this)
-    sys.spawn('ImageButton', {
+    const complete = sys.spawn('ImageButton', {
         name: 'complete',
         img: res.ui.buttonTrade,
 
         onClick: function() {
+            if (sys.isFun(market.tradeGate)) {
+                if (!market.tradeGate(complete)) return
+            }
             market.closeTrade()
         }
     }, this)
@@ -91,6 +97,7 @@ MarketScreen.prototype.closeTrade = function() {
         }
     })
     this.hide()
+    if (sys.isFun(this.postTradeAction())) this.postTradeAction()
     lib.sfx(res.sfx.pickup)
 }
 
@@ -142,7 +149,9 @@ MarketScreen.prototype.adjust = function() {
     this.complete.y = this._h - this.complete.h - 8
 }
 
-MarketScreen.prototype.show = function() {
+MarketScreen.prototype.show = function(postTradeAction, tradeGate) {
+    this.postTradeAction = postTradeAction
+    this.tradeGate = tradeGate
     this.trade = {
         herbs: 0,
         crystals: 0,

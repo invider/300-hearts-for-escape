@@ -35,6 +35,8 @@ module.exports = function() {
     env.turn = 0
     env.gameover = false
 
+    //lib.math._seed = Date.now()
+
     setTimeout(() => popup.show(
         res.txt.welcome, () => {
             island.town['dareburg'].known = true

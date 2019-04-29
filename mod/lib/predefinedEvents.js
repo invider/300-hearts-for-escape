@@ -1,32 +1,52 @@
 module.exports = [
     {
-        "message": "You are found yourself on the island, you feel sick, look someone to help you",
+        "exec": function(rs){
+        },
+        "ok": function() {
+            lab.hud.island.town['central town'].known = true
+            lab.hud.island.town['central town'].unlock()
+            lab.hud.island.town['dareburg'].locked = true
+        },
+    },
+    {
+        "exec": function(rs){ 
+            rs.resources = {
+                herbs: 3,
+                crystals: 0,
+                potion: 0,
+                gold: 0,
+            }
+        },
+        "ok": function() {
+            lab.hud.market.show(
+                () => {
+                    lab.hud.island.town['dareburg'].unlock()
+                    lab.hud.island.town['central town'].locked = true
+                },
+                (actuator) => {
+                    if (actuator.name === 'complete'
+                            && lab.hud.market.trade.herbs === 3) {
+                        return true
+                    }
+                    return false
+                })
+        },
+    },
+    {
         "exec": function(res){
-            res.resources.crystals = 0;
-            res.resources.herbs = 0;
-
+        },
+        "ok": function() {
+            lab.hero.herbs = 0
+            lab.hud.island.town['port of hope'].known = true
+            lab.hud.island.town['port of hope'].unlock()
+            lab.hud.island.town['dareburg'].locked = true
+        },
+    },
+    {
+        "exec": function(res){
+        },
+        "ok": function() {
             lab.hud.island.townList.forEach(t => t.unlock())
-        }
-    },
-    {
-        "message": "While you walk you lost some health. Here you can buy some herbs",
-        "exec": function(res){
-            res.resources.crystals = 0;
-            res.resources.herbs = 5;
-        }
-    },
-    {
-        "message": "Here you can buy some stones",
-        "exec": function(res){
-            res.resources.crystals = 5;
-            res.resources.herbs = 0;
-        }
-    },
-    {
-        "message": "prrrrrrrrrrrrr",
-        "exec": function(res){
-            res.resources.crystals = 0;
-            res.resources.herbs = 0;
-        }
+        },
     }
 ];

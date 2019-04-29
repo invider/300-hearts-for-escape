@@ -31,7 +31,7 @@ Hero.prototype.die = function() {
 }
 
 Hero.prototype.toMarket = function(town) {
-    if (this.location !== town) return
+    if (town && this.location !== town) return
     lab.hud.market.show()
 }
 
@@ -46,7 +46,7 @@ Hero.prototype.travelTo = function(town) {
     const days = this.location.daysToTarget(town)
     const bleeding = days * env.tuning.travelHealth
     env.day += days
-    this.health -= days * bleeding 
+    this.health -= bleeding 
 
     env.turn ++
     this.arrived(town)
@@ -54,10 +54,16 @@ Hero.prototype.travelTo = function(town) {
     if (this.health <= 0) {
         this.die()
     } else {
+        const hero = this
+        let afterPopup = function() {
+            log.out('after')
+            hero.toMarket();
+        }
+        if (sys.isFun(town.stats.ok)) afterPopup = town.stats.ok
+
         lab.hud.popup.show(
-            '' + days + ' days passed. '
-            + 'Lost ' + bleeding + ' health!\n'
-            + town.stats.message)
+            'In ' + days + " days you've lost " + bleeding + ' health!\n'
+            + town.stats.message, afterPopup)
         lib.sfx(res.sfx.arrived, 0.6)
     }
 }

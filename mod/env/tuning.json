@@ -1,8 +1,8 @@
 {
     "maxHealth": 999,
     "startHealth": 100,
-    "startHerbs": 10,
-    "startCrystals": 8,
+    "startHerbs": 0,
+    "startCrystals": 0,
     "startPotion": 0,
     "startGold": 0,
     "travelSpeed": 60,

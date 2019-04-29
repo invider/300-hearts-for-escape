@@ -1,53 +1,92 @@
 module.exports = [
     {
-        "message": "something happened with crystals",
-        "exec": function(res){
-            res.resources.crystals = 0;
-            res.prices.crystals = 20;
+        "exec": function(rs){
+            rs.resources.herbs = 0
+            rs.prices.herbs = 3
         }
     },
     {
-        "message": "something happened with grass",
-        "exec": function(res){
-            res.resources.herbs = 0;
-            res.prices.herbs = 20;
+        // townfolks are celebrating good harvest of herbs! you got 5 for free.
+        "exec": function(rs){
+            rs.resources.herbs = 40
+            rs.prices.herbs = 1
+            lab.hero.herbs += 5
         }
     },
     {
-        "message": "Rabbits has been eat half of grass in this town",
-        "exec": function(res){
-            res.resources.herbs = res.resources.herbs / 2;
-            res.prices.herbs = Math.ceil(res.prices.herbs * 2);
+        //a thieve stole crystals!
+        "exec": function(rs){
+            rs.resources.crystals = 1
+            rs.prices.crystals = 5
         }
     },
     {
-        "message": "Thieve stoled 2/3 gems",
-        "exec": function(res){
-            res.resources.crystals = res.resources.crystals * 2 / 3;
-            res.prices.crystals = Math.ceil(res.prices.crystals * 3 / 2);
+        // miners discovered new crystal deposit.
+        "exec": function(rs){
+            rs.resources.crystals = 15
+            rs.prices.crystals = 1
         }
     },
     {
-        "message": "A terrible monsters have eaten all resources",
-        "exec": function(res){
-            res.resources.crystals = 0;
-            res.resources.crystals = 0;
-            res.resources.herbs = 0;
-            res.prices.herbs = 0;
+        // a drunk alchemist broke down the potion stand.
+        "exec": function(rs){
+            rs.resources.potion = 0
+            rs.prices.potion = 6
         }
     },
     {
-        "message": "Gnome caravan with a lot of gems has arrived to this town recently",
-        "exec": function(res){
-            res.resources.gems = res.resources.gems * 2;
-            res.prices.gems = Math.ceil(res.prices.gems / 2);
+        // alchemistry students were practicing potionmaking.
+        "exec": function(rs){
+            rs.resources.potion = 10
+            rs.prices.potion = 2
         }
     },
     {
-        "message": "This year's harvest of herbs was very good",
-        "exec": function(res){
-            res.resources.herbs = res.resources.herbs * 2;
-            res.prices.herbs = Math.ceil(res.prices.herbs / 2);
+        // a magician took all the gold for his experiments.
+        "exec": function(rs){
+            rs.resources.gold = 0
+            rs.prices.gold = 8
         }
-    }
+    },
+    {
+        // alchemist accidentally turned stone into gold.
+        "exec": function(rs){
+            rs.resources.gold = 5
+            rs.prices.gold = 3
+        }
+    },
+    {
+        // rabbits ate half of the herbs in this town.
+        "exec": function(rs){
+            rs.resources.herbs = rs.resources.herbs/2
+            rs.prices.herbs = 3
+        }
+    },
+    {
+        // a terrible monster have eaten all resources.
+        "exec": function(rs){
+            rs.resources.herbs = 0
+            rs.prices.herbs = 3
+            rs.resources.crystals = 0
+            rs.prices.crystals = 5
+            rs.resources.potion = 0
+            rs.prices.potion = 8
+            rs.resources.gold = 0
+            rs.prices.gold = 10
+        }
+    },
+    {
+        // a gnome caravan with a lot of crystals has arrived to this town.
+        "exec": function(rs){
+            rs.resources.crystals = 20
+            rs.prices.crystals = 1
+        }
+    },
+    {
+        // a villager found a barrel of potion in his backyard.
+        "exec": function(rs){
+            rs.resources.potion = 10
+            rs.prices.potion = 1
+        }
+    },
 ];
