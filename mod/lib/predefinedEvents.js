@@ -4,6 +4,8 @@ module.exports = [
         "exec": function(res){
             res.resources.crystals = 0;
             res.resources.herbs = 0;
+
+            lab.hud.island.townList.forEach(t => t.unlock())
         }
     },
     {

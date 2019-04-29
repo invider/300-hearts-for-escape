@@ -36,6 +36,7 @@ module.exports = function setup() {
     env.turn = 0
 
     popup.show(res.txt.welcome)
+    island.town['dareburg'].unlock()
 
     env.debug = {}
     mod.debug.env.info = env.debug

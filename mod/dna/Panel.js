@@ -28,7 +28,7 @@ Panel.prototype.drawImage = function(img, baseX, direction) {
 }
 
 Panel.prototype.drawText = function(text, baseX, direction) {
-    const baseY = this.y + this.h/2
+    const baseY = this.y + this.h/2 - 1
     ctx.font = env.style.panel.font
     const tw = ctx.measureText(text).width
 
@@ -40,7 +40,7 @@ Panel.prototype.drawText = function(text, baseX, direction) {
     } else {
         ctx.textAlign = 'center'
     }
-    ctx.textBaseline = 'center'
+    ctx.textBaseline = 'middle'
     ctx.fillText(text, baseX, baseY)
 
     return tw * direction
@@ -59,9 +59,16 @@ Panel.prototype.draw = function() {
     curX += this.drawImage(res.ui.heart, curX, 1) + tab
     curX += this.drawText('' + Math.ceil(lab.hero.health), curX, 1)
 
-    this.drawText('Day ' + env.day, this.w/2, 0)
+    this.drawText('Day ' + env.day, this.w/2 - 50, 0)
 
     curX = this.w - baseX
+
+    curX += this.drawText('' + Math.floor(lab.hero.gold), curX, -1) - tab
+    curX += this.drawImage(res.goods.gold, curX, -1) - env.style.panel.itemSpacing
+
+    curX += this.drawText('' + Math.floor(lab.hero.potion), curX, -1) - tab
+    curX += this.drawImage(res.goods.potion, curX, -1) - env.style.panel.itemSpacing
+
     curX += this.drawText('' + Math.floor(lab.hero.crystals), curX, -1) - tab
     curX += this.drawImage(res.goods.crystals, curX, -1) - env.style.panel.itemSpacing
 

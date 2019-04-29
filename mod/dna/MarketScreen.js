@@ -30,9 +30,11 @@ const MarketScreen = function(dat) {
         baseY: {}
     }
 
-    let baseY = 30
+    let baseY = env.style.market.contentY
     baseY += this.spawnResPair('herbs', baseY)
     baseY += this.spawnResPair('crystals', baseY)
+    baseY += this.spawnResPair('potion', baseY)
+    baseY += this.spawnResPair('gold', baseY)
 }
 MarketScreen.prototype = Object.create(Screen.prototype)
 
@@ -56,9 +58,19 @@ MarketScreen.prototype.tradeTotal = function() {
     return -total
 }
 
-MarketScreen.prototype.closeTrade = function() {
+MarketScreen.prototype.isTradePossible = function() {
     const total = this.tradeTotal()
-    if (total < 0 && lab.hero.health < -total) return
+    if (total < 0 && lab.hero.health < -total + 1) return false
+
+    let movement = false
+    Object.values(this.trade).forEach(rs => {
+        if (rs !== 0) movement = true
+    })
+    return movement
+}
+
+MarketScreen.prototype.closeTrade = function() {
+    if (!this.isTradePossible()) return
 
     const price = lab.hero.location.stats.prices
     Object.keys(this.trade).forEach(rs => {
@@ -82,7 +94,7 @@ MarketScreen.prototype.spawnResPair = function(resource, baseY) {
         name: 'buy_' + resource,
         img: res.ui.buttonLeft,
         x: 50,
-        y: baseY,
+        y: baseY + 1,
         onClick: function() {
             market.buy(resource)
         }
@@ -91,7 +103,7 @@ MarketScreen.prototype.spawnResPair = function(resource, baseY) {
         name: 'sell_' + resource,
         img: res.ui.buttonRight,
         x: 85,
-        y: baseY,
+        y: baseY + 1,
         onClick: function() {
             market.sell(resource)
         }
@@ -126,6 +138,8 @@ MarketScreen.prototype.show = function() {
     this.trade = {
         herbs: 0,
         crystals: 0,
+        potion: 0,
+        gold: 0,
     }
     this.hidden = false
     lab.hud.island.pause()
@@ -137,6 +151,23 @@ MarketScreen.prototype.hide = function() {
     lab.hud.island.resume()
 }
 
+MarketScreen.prototype.drawTitle = function() {
+    const title = lab.hero.location.name + ' shop'
+
+    ctx.font = env.style.market.font
+    ctx.fillStyle = env.style.market.content
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+
+    let y = env.style.market.titleY
+    ctx.fillText(title, this._w/2, y)
+
+    y = env.style.market.contentY - 11
+    ctx.fillText('own', 22, y)
+    ctx.fillText('cost', 118, y)
+    ctx.fillText('qty', 162, y)
+}
+
 MarketScreen.prototype.drawResourceLine = function(rs, stats) {
     let own = lab.hero[rs]
     if (this.trade[rs] < 0) own += this.trade[rs]
@@ -145,7 +176,7 @@ MarketScreen.prototype.drawResourceLine = function(rs, stats) {
     if (this.trade[rs] > 0) stock -= this.trade[rs]
 
     const baseY = this.layout.baseY[rs]
-    const axisY = env.style.market.lineStep/2 + baseY
+    const axisY = baseY + env.style.market.lineStep/2 - 5
 
     const img = res.goods[rs]
     ctx.drawImage(img, 10, baseY, img.width, img.height)
@@ -155,7 +186,7 @@ MarketScreen.prototype.drawResourceLine = function(rs, stats) {
     ctx.font = env.style.market.font
     ctx.fillStyle = env.style.market.content
     ctx.textAlign = 'left'
-    ctx.textBaseline = 'center'
+    ctx.textBaseline = 'middle'
 
     ctx.fillText('' + own, 25, axisY)
 
@@ -174,7 +205,7 @@ MarketScreen.prototype.drawTotalLine = function(baseY) {
     const img = res.ui.heart
     const axisY = baseY + img.height/2 - 2
 
-    ctx.drawImage(img, 4, baseY, img.width, img.height)
+    ctx.drawImage(img, 10, baseY, img.width, img.height)
     ctx.drawImage(img, 54, baseY, img.width, img.height)
 
     ctx.font = env.style.market.font
@@ -182,7 +213,7 @@ MarketScreen.prototype.drawTotalLine = function(baseY) {
     ctx.textAlign = 'left'
     ctx.textBaseline = 'middle'
 
-    ctx.fillText('' + lab.hero.health, 20, axisY)
+    ctx.fillText('' + lab.hero.health, 26, axisY)
     ctx.fillText('' + this.tradeTotal(), 70, axisY)
 
 
@@ -194,11 +225,15 @@ MarketScreen.prototype.drawTotalLine = function(baseY) {
 MarketScreen.prototype.drawComponents = function() {
     Screen.prototype.drawComponents.call(this)
 
+    this.drawTitle()
+
     const stats = lab.hero.location.stats
     this.drawResourceLine('herbs', stats)
     this.drawResourceLine('crystals', stats)
+    this.drawResourceLine('potion', stats)
+    this.drawResourceLine('gold', stats)
 
-    this.drawTotalLine(130)
+    this.drawTotalLine(env.style.market.totalY)
 }
 
 module.exports = MarketScreen

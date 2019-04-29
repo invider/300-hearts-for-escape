@@ -3,6 +3,8 @@
 // @depends(dna/Screen)
 const Screen = dna.Screen
 
+const MAX_LINES = 4
+
 const PopupScreen = function(dat) {
     this.text = ''
     this.background = res.ui.alert_back
@@ -14,9 +16,55 @@ const PopupScreen = function(dat) {
         name: 'close',
         img: res.ui.buttonClose,
 
+        show: function() {
+            if (this.hidden) {
+                this.__.next.hide()
+                this.hidden = false
+                this.__.captureFocus(this)
+            }
+        },
+        hide: function() {
+            if (!this.hidden) {
+                this.hidden = true
+                this.__.releaseFocus(this)
+            }
+        },
+        onFocus: function() {},
         onClick: function() {
             popup.hide()
-        }
+        },
+        onKeyDown: function(e) {
+            if (e.key === 'Enter' || e.key === 'Escape') {
+                this.onClick()
+            }
+        },
+    }, this)
+
+    sys.spawn('ImageButton', {
+        name: 'next',
+        img: res.ui.buttonOK,
+        hidden: true,
+
+        show: function() {
+            this.__.close.hide()
+            this.hidden = false
+            this.__.captureFocus(this)
+        },
+        hide: function() {
+            if (!this.hidden) {
+                this.hidden = true
+                this.__.releaseFocus(this)
+            }
+        },
+        onFocus: function() {},
+        onClick: function() {
+            popup.cursor += popup.nextBatch
+        },
+        onKeyDown: function(e) {
+            if (e.key === 'Enter' || e.key === 'Escape') {
+                this.onClick()
+            }
+        },
     }, this)
 
     this.hidden = true
@@ -32,13 +80,15 @@ PopupScreen.prototype.adjust = function() {
     this.h = this._h * this.scale
 
     this.x = (this.__.w - this.w)/2
-    this.y = (this.__.h - this.h)/2
+    this.y = (this.__.h - this.h)/2 - 50
 
     this._ls.forEach(w => { if (sys.isFun(w.adjust)) w.adjust() })
 
     const axis = this._w/2
     this.close.x = axis - this.close.w/2
     this.close.y = this._h - this.close.h - 8
+    this.next.x = axis - this.close.w/2
+    this.next.y = this._h - this.close.h - 8
 
     this.formatText()
 }
@@ -67,24 +117,34 @@ PopupScreen.prototype.formatText = function() {
         })
         text.push(curLine)
     })
+    // normalize to remove trailing empty line
+    if (text[text.length-1] === '') text.pop()
     this.lines = text
 }
 
 PopupScreen.prototype.show = function(text) {
     this.text = text
+    this.cursor = 0
     this.hidden = false
-    // lab.hud.island.pause()
+    this.close.hidden = true
+    this.next.hidden = true
+    lab.hud.island.pause()
 }
 
 PopupScreen.prototype.hide = function() {
     if (this.hidden) return
     this.hidden = true
-    //lab.hud.island.resume()
+    this.close.hide()
+    this.next.hide()
+    lab.hud.island.resume()
 }
 
 PopupScreen.prototype.drawText = function() {
     this.formatText()
-    const h = this.lines.length * env.style.popup.lineSpacing
+
+    const linesLeft = this.lines.length - this.cursor
+    const linesToShow = Math.min(linesLeft, MAX_LINES)
+    const h = linesToShow * env.style.popup.lineSpacing
 
     const baseX = env.style.popup.margin
     let curY = (this._h - h)/2
@@ -92,12 +152,21 @@ PopupScreen.prototype.drawText = function() {
     ctx.font = env.style.popup.font
     ctx.fillStyle = env.style.popup.content
     ctx.textAlign = 'left'
-    ctx.textBaseline = 'middle'
+    ctx.textBaseline = 'bottom'
 
-    this.lines.forEach(l => {
+    const limit = this.cursor + linesToShow
+    for (let i = this.cursor; i < limit; i++) {
+        let l = this.lines[i]
+        if (l == '') l = '.'
         ctx.fillText(l, baseX, curY)
         curY += env.style.popup.lineSpacing
-    })
+    }
+    if (limit < this.lines.length) {
+        this.nextBatch = linesToShow
+        this.next.show()
+    } else {
+        this.close.show()
+    }
 }
 
 PopupScreen.prototype.drawComponents = function() {

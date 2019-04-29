@@ -18,11 +18,14 @@ const MapScreen = function(dat) {
 MapScreen.prototype = Object.create(Screen.prototype)
 
 MapScreen.prototype.pause = function() {
-    this.paused = true
+    this.disabled = true
 }
 
 MapScreen.prototype.resume = function() {
-    this.paused = false
+    this._ls.forEach(e => {
+        if (e._hover) e._hover = false
+    })
+    this.disabled = false
 }
 
 MapScreen.prototype.populate = function() {
@@ -31,6 +34,7 @@ MapScreen.prototype.populate = function() {
         this.town[town.name] = town
         this.townList.push(town)
     })
+    sys.spawn('Ship', {}, this)
 }
 
 module.exports = MapScreen

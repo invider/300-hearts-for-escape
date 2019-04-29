@@ -3,9 +3,8 @@
     "font": "8px boo-city",
     "content": "#c0b020",
     "town": {
-        "current": "#40e010",
-        "visited": "#c0b020",
-        "unknown": "#727070",
+        "current": "#000000",
+        "visited": "#000000",
         "hoverScale": 1,
         "selectedScale": -1
     },
@@ -24,12 +23,15 @@
     "market": {
         "lineStep": 20,
         "font": "12px boo-city",
-        "content": "#301000"
+        "content": "#000000",
+        "titleY": 12,
+        "contentY": 42,
+        "totalY": 140
     },
     "popup": {
         "font": "10px boo-city",
         "content": "#301000",
-        "margin": 5, 
+        "margin": 9, 
         "lineSpacing": 12
     }
 }

@@ -66,22 +66,27 @@ Screen.prototype.draw = function() {
 }
 
 Screen.prototype.onClick = function(x, y, e) {
+    if (this.disabled) return
     Container.prototype.onClick.call(this, x/this.scale, y/this.scale, e)
 }
 
 Screen.prototype.onDblClick = function(x, y, e) {
+    if (this.disabled) return
     Container.prototype.onDblClick.call(this, x/this.scale, y/this.scale, e)
 }
 
 Screen.prototype.onMouseDown = function(x, y, b, e) {
+    if (this.disabled) return
     Container.prototype.onMouseDown.call(this, x/this.scale, y/this.scale, b, e)
 }
 
 Screen.prototype.onMouseUp = function(x, y, b, e) {
+    if (this.disabled) return
     Container.prototype.onMouseUp.call(this, x/this.scale, y/this.scale, b, e)
 }
 
 Screen.prototype.onMouseMove = function(x, y, e) {
+    if (this.disabled) return
     Container.prototype.onMouseMove.call(this, x/this.scale, y/this.scale, e)
 }
 

@@ -14,8 +14,8 @@
 {
     "name": "central town",
     "tag": "town2a",
-    "x": 123,
-    "y": 89
+    "x": 121,
+    "y": 76
 },
 {
     "name": "lonelake",
@@ -36,7 +36,7 @@
     "y": 22
 },
 {
-    "name": "cape of despair",
+    "name": "desesperado",
     "tag": "town6a",
     "x": 258,
     "y": 48

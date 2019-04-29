@@ -50,7 +50,4 @@ module.exports = [
             res.prices.herbs = Math.ceil(res.prices.herbs / 2);
         }
     }
-
-
-
 ];
