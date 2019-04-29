@@ -14,8 +14,8 @@ const MarketScreen = function(dat) {
         img: res.ui.buttonClose,
 
         onClick: function() {
-            lib.sfx(res.sfx.click)
             market.hide()
+            lib.sfx(res.sfx.click, 0.6)
         }
     }, this)
     sys.spawn('ImageButton', {
@@ -43,7 +43,7 @@ MarketScreen.prototype.buy = function(rs) {
     const stock = lab.hero.location.stats.resources[rs]
     if (this.trade[rs] < 0 || this.trade[rs] < stock) {
         this.trade[rs] ++
-        lib.sfx(res.sfx.move)
+        lib.sfx(res.sfx.click, 0.6)
     }
 }
 
@@ -51,7 +51,7 @@ MarketScreen.prototype.sell = function(rs) {
     const own = lab.hero[rs]
     if (this.trade[rs] > 0 || this.trade[rs] > -own) {
         this.trade[rs] --
-        lib.sfx(res.sfx.move)
+        lib.sfx(res.sfx.click, 0.6)
     }
 }
 
@@ -150,6 +150,7 @@ MarketScreen.prototype.show = function() {
         gold: 0,
     }
     this.hidden = false
+    this.__.moveOnTop(this.__._ls.indexOf(this))
     lab.hud.island.pause()
 }
 

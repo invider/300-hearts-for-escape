@@ -22,13 +22,11 @@ Hero.prototype.die = function() {
     this.health = 0
     lab.hud.island.ship.leave()
     lab.hud.popup.show(
-        'You died!/'
-        + ' / '
-        + 'You survived for ' + env.day + ' days,/'
-        + 'but desiase was stronger...')
-    lab.hud.popup.postAction = function() {
-        trap('restart')
-    }
+            'You died!/'
+            + ' / '
+            + 'You survived for ' + env.day + ' days,/'
+            + 'but desiase was stronger...',
+        () => trap('restart'))
     lab.hud.island.stop()
 }
 
@@ -39,7 +37,6 @@ Hero.prototype.toMarket = function(town) {
 
 Hero.prototype.arrived = function(town) {
     this.location = town
-    this.location.visited = true
     this.location.arrive()
 }
 
@@ -53,7 +50,6 @@ Hero.prototype.travelTo = function(town) {
 
     env.turn ++
     this.arrived(town)
-    lib.sfx(res.sfx.arrived, 0.3)
 
     if (this.health <= 0) {
         this.die()
@@ -62,6 +58,7 @@ Hero.prototype.travelTo = function(town) {
             '' + days + ' days passed. '
             + 'Lost ' + bleeding + ' health!\n'
             + town.stats.message)
+        lib.sfx(res.sfx.arrived, 0.6)
     }
 }
 

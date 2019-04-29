@@ -31,7 +31,7 @@ const PopupScreen = function(dat) {
         },
         onFocus: function() {},
         onClick: function() {
-            lib.sfx(res.sfx.click)
+            lib.sfx(res.sfx.click, 0.6)
             popup.hide()
             if (sys.isFun(popup.postAction)) popup.postAction()
         },
@@ -61,7 +61,7 @@ const PopupScreen = function(dat) {
         onFocus: function() {},
         onClick: function() {
             popup.cursor += popup.nextBatch
-            lib.sfx(res.sfx.click)
+            lib.sfx(res.sfx.click, 0.6)
         },
         onKeyDown: function(e) {
             if (e.key === 'Enter' || e.key === 'Escape') {
@@ -125,12 +125,14 @@ PopupScreen.prototype.formatText = function() {
     this.lines = text
 }
 
-PopupScreen.prototype.show = function(text) {
+PopupScreen.prototype.show = function(text, postAction) {
     this.text = text
+    this.postAction = postAction
     this.cursor = 0
     this.hidden = false
     this.close.hidden = true
     this.next.hidden = true
+    this.__.moveOnTop(this.__._ls.indexOf(this))
     lab.hud.island.pause()
 }
 

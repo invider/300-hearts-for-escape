@@ -5,6 +5,7 @@ const Town = function(dat) {
     this.w = 0
     this.h = 0
     this.locked = true
+    this.known = false
     this.visited = false
     this.stats = lib.default.genParamsForTown();
 
@@ -24,11 +25,12 @@ Town.prototype.daysToTarget = function(target) {
 }
 
 Town.prototype.arrive = function(){
+    this.visited = true
+    this.known = true
     this.stats = lib.default.genParamsForTown();
 }
 
 Town.prototype.departed = function(){
-    
 }
 
 Town.prototype.onFocus = function() {}
@@ -79,7 +81,7 @@ Town.prototype.draw = function() {
         this.x-f, this.y-f,
         this.w+f*2, this.h+f*2)
 
-    if (this.visited) {
+    if (this.known) {
         // draw city sign
         const img = res.sign
         ctx.drawImage(img,

@@ -35,8 +35,11 @@ module.exports = function() {
     env.turn = 0
     env.gameover = false
 
-    setTimeout(() => popup.show(res.txt.welcome) , 1000)
-    island.town['dareburg'].unlock()
+    setTimeout(() => popup.show(
+        res.txt.welcome, () => {
+            island.town['dareburg'].known = true
+            island.town['dareburg'].unlock()
+        }), 1000)
 
     env.debug = {}
     mod.debug.env.info = env.debug
