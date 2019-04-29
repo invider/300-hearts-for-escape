@@ -97,7 +97,7 @@ MarketScreen.prototype.closeTrade = function() {
         }
     })
     this.hide()
-    if (sys.isFun(this.postTradeAction())) this.postTradeAction()
+    if (sys.isFun(this.postTradeAction)) this.postTradeAction()
     lib.sfx(res.sfx.pickup)
 }
 

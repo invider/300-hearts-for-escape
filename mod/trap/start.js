@@ -1,5 +1,10 @@
 'use strict'
 module.exports = function() {
+
+    const hero = sys.spawn('Hero', {
+        name: 'hero',
+    }, '')
+
     // create UI container
     const hud = sys.spawn('hud/Hud', {
         Z: 10,
@@ -26,9 +31,6 @@ module.exports = function() {
     }, 'hud')
     popup.adjust()
 
-    const hero = sys.spawn('Hero', {
-        name: 'hero',
-    }, '')
     hero.arrived(island.townList[0])
 
     env.day = 1

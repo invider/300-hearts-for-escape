@@ -1,0 +1,12 @@
+#!/bin/sh
+
+NAME=${1:-out}
+
+rm -f *.zip
+cd out
+zip -v -r $NAME.zip . -x ".git*" -x ".DS_Store" -x ".ml"
+mv ./$NAME.zip ../
+cd ..
+
+du -sh *.zip
+echo 'zip is generated!'

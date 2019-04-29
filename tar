@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NAME=${1:-out}
+
+tar cfzv $NAME.tar.gz --exclude='*.ml' --exclude='.DS_Store' ./out
+
+du -sh *.tar.gz
+echo 'tar is generated'
+

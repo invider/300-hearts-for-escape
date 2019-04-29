@@ -2,8 +2,8 @@
 
 const MIN_ANGLE = -0.075
 const MAX_ANGLE = 0.075
-const SPEED = 0.04
 const SAIL_SPEED = 10
+const SPEED = 0.04
 
 const Ship = function(dat) {
     this.name = 'ship'
@@ -31,8 +31,9 @@ Ship.prototype.evo = function(dt) {
     }
     if (this.leaving) {
         this.x += SAIL_SPEED * dt
-        if (this.x <= 270) this.y -= 2*dt
-        if (this.x > 270) this.y += 3*dt
+        if (this.x <= 270) this.y -= 2.5*dt
+        else if (this.x < 285) this.y += 1*dt
+        else if (this.x > 285) this.y += 3*dt
     }
 }
 
