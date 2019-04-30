@@ -22,15 +22,15 @@ module.exports = {
         params = params || {};
         var rs = {
             resources:{
-                herbs: 5 + lib.math.rndi(6),
-                crystals: 3 + lib.math.rndi(4),
-                potion: 2 + lib.math.rndi(3),
-                gold: lib.math.rndi(3),
+                herbs: 5 + lib.math.rndi(8),
+                crystals: 3 + lib.math.rndi(7),
+                potion: 2 + lib.math.rndi(5),
+                gold: lib.math.rndi(4),
             },
             prices: {
                 herbs: 1 + lib.math.rndi(2),
-                crystals: 2 + lib.math.rndi(1),
-                potion: 3 + lib.math.rndi(2),
+                crystals: 2 + lib.math.rndi(2),
+                potion: 3 + lib.math.rndi(5),
                 gold: 5 + lib.math.rndi(5),
             },
             message:"Something strange happened..."

@@ -1,10 +1,12 @@
 {
-    "maxHealth": 999,
+    "winHealth": 300,
+    "winTown": "port of hope",
     "startHealth": 100,
     "startHerbs": 0,
     "startCrystals": 0,
     "startPotion": 0,
     "startGold": 0,
     "travelSpeed": 60,
-    "travelHealth": 2
+    "travelHealth": 2,
+    "desieseFactor": 0.01
 }

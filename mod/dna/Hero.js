@@ -30,6 +30,30 @@ Hero.prototype.die = function() {
     lab.hud.island.stop()
 }
 
+Hero.prototype.win = function() {
+    lab.hud.island.ship.leave()
+    lab.hud.popup.show(
+            'You have escaped!/'
+            + '/'
+            + 'The escape took ' + env.day + ' days/'
+            + 'and ' + env.turn + ' moves')
+        // do not do restart on win
+        //() => trap('restart'))
+    lab.hud.island.stop()
+}
+
+Hero.prototype.rob = function() {
+    this.herbs = Math.floor(this.herbs * Math.random())
+    this.crystals = Math.floor(this.crystals * Math.random())
+    this.potion = Math.floor(this.potion * Math.random())
+    this.gold = Math.floor(this.gold * Math.random())
+}
+
+Hero.prototype.hit = function() {
+    this.health -= Math.floor((this.health/2) * Math.random())
+}
+
+
 Hero.prototype.toMarket = function(town) {
     if (town && this.location !== town) return
     lab.hud.market.show()
@@ -44,7 +68,7 @@ Hero.prototype.travelTo = function(town) {
     if (!town || this.location === town) return
 
     const days = this.location.daysToTarget(town)
-    const bleeding = days * env.tuning.travelHealth
+    const bleeding = Math.round(days * (env.tuning.travelHealth + env.tuning.desieseFactor*env.day))
     env.day += days
     this.health -= bleeding 
 
@@ -53,16 +77,18 @@ Hero.prototype.travelTo = function(town) {
 
     if (this.health <= 0) {
         this.die()
+    } else if (this.health >= env.tuning.winHealth
+            && this.location.name === env.tuning.winTown) {
+        this.win()
     } else {
         const hero = this
         let afterPopup = function() {
-            log.out('after')
             hero.toMarket();
         }
         if (sys.isFun(town.stats.ok)) afterPopup = town.stats.ok
 
         lab.hud.popup.show(
-            'In ' + days + " days you've lost " + bleeding + ' health!\n'
+            'In ' + days + " days you've lost " + bleeding + ' hearts!\n'
             + town.stats.message, afterPopup)
         lib.sfx(res.sfx.arrived, 0.6)
     }

@@ -69,3 +69,5 @@ out*
 
 # collider.jam
 units.json
+
+*.local

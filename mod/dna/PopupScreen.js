@@ -97,7 +97,7 @@ PopupScreen.prototype.adjust = function() {
 }
 
 PopupScreen.prototype.formatText = function() {
-    const paragraphs = this.text.split(/[\n/]+/)
+    const paragraphs = this.text.split(/[\n/\\]+/)
     const textWidth = this._w - env.style.popup.margin*2
     ctx.font = env.style.popup.font
 

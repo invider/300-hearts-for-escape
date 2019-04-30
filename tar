@@ -2,7 +2,10 @@
 
 NAME=${1:-out}
 
-tar cfzv $NAME.tar.gz --exclude='*.ml' --exclude='.DS_Store' ./out
+cd out
+tar cfzv $NAME.tar.gz --exclude='*.ml' --exclude='.DS_Store' ./*
+mv ./$NAME.tar.gz ../
+cd ..
 
 du -sh *.tar.gz
 echo 'tar is generated'

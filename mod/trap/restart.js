@@ -5,6 +5,7 @@ module.exports = function() {
         if (lab.hud.island.ship.x < 320) {
             setTimeout(startWhenShipLeaves, 300)
         } else {
+            lab.detach('hero')
             lab.hud.detach()
             trap('start')
         }

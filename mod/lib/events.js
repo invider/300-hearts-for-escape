@@ -8,7 +8,7 @@ module.exports = [
     {
         // townfolks are celebrating good harvest of herbs! you got 5 for free.
         "exec": function(rs){
-            rs.resources.herbs = 40
+            rs.resources.herbs = 50
             rs.prices.herbs = 1
             lab.hero.herbs += 5
         }
@@ -17,13 +17,13 @@ module.exports = [
         //a thieve stole crystals!
         "exec": function(rs){
             rs.resources.crystals = 1
-            rs.prices.crystals = 5
+            rs.prices.crystals = 6
         }
     },
     {
         // miners discovered new crystal deposit.
         "exec": function(rs){
-            rs.resources.crystals = 15
+            rs.resources.crystals = 21
             rs.prices.crystals = 1
         }
     },
@@ -31,13 +31,13 @@ module.exports = [
         // a drunk alchemist broke down the potion stand.
         "exec": function(rs){
             rs.resources.potion = 0
-            rs.prices.potion = 6
+            rs.prices.potion = 7
         }
     },
     {
         // alchemistry students were practicing potionmaking.
         "exec": function(rs){
-            rs.resources.potion = 10
+            rs.resources.potion = 17
             rs.prices.potion = 2
         }
     },
@@ -51,7 +51,7 @@ module.exports = [
     {
         // alchemist accidentally turned stone into gold.
         "exec": function(rs){
-            rs.resources.gold = 5
+            rs.resources.gold = 8
             rs.prices.gold = 3
         }
     },
@@ -78,15 +78,41 @@ module.exports = [
     {
         // a gnome caravan with a lot of crystals has arrived to this town.
         "exec": function(rs){
-            rs.resources.crystals = 20
+            rs.resources.crystals = 25
             rs.prices.crystals = 1
         }
     },
     {
         // a villager found a barrel of potion in his backyard.
         "exec": function(rs){
-            rs.resources.potion = 10
+            rs.resources.potion = 15
             rs.prices.potion = 1
+        }
+    },
+    {
+        // townsfolk are worried about spreading of the desiese
+        "exec": function(rs){}
+    },
+    {
+        // people are wary of strangers. don't stay here for long!
+        "exec": function(rs){}
+    },
+    {
+        "exec": function(rs){}
+    },
+    {
+        "exec": function(rs){}
+    },
+    {
+        // robbers stole some of your stuff!
+        "exec": function(rs){
+            lab.hero.rob()
+        }
+    },
+    {
+        // local authorities confiscated some of your belongings.
+        "exec": function(rs){
+            lab.hero.rob()
         }
     },
 ];
