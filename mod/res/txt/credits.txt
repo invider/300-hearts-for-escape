@@ -1,0 +1,7 @@
+a game by
+
+Igor Khotin
+Kyrylo Cherkashyn
+Anatoly Yakushko
+
+Specially for Ludum Dare 44

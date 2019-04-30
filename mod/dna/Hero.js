@@ -36,9 +36,10 @@ Hero.prototype.win = function() {
             'You have escaped!/'
             + '/'
             + 'The escape took ' + env.day + ' days/'
-            + 'and ' + env.turn + ' moves')
-        // do not do restart on win
-        //() => trap('restart'))
+            + 'and ' + env.turn + ' moves',
+        function() {
+            trap('titles')
+        })
     lab.hud.island.stop()
 }
 
