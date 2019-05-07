@@ -6,4 +6,5 @@ rm -f *.zip
 rm -f *.tar
 rm -f *.tgz
 rm -f *.tar.gz
+rm -rf release-builds
 

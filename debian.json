@@ -1,0 +1,9 @@
+{
+  "dest": "release-builds/",
+  "icon": "out/assets/icons/jam.png",
+  "categories": [
+    "games"
+  ],
+  "lintianOverrides": [
+  ]
+}

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cp -r ./tron/* ./out/
+cp ./package.json ./out
+
+npm run tron
+
