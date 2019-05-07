@@ -1,10 +1,11 @@
 #!/bin/sh
 
 # output files
-rm -rf out
 rm -f *.zip
 rm -f *.tar
 rm -f *.tgz
 rm -f *.tar.gz
+rm -rf out
+rm -rf out.dist
 rm -rf release-builds
 

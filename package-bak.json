@@ -7,15 +7,12 @@
 	"scripts": {
 		"start": "node ./node_modules/collider.jam/jam.js",
 		"tron": "electron ./out",
-		"package": "jam pack; cp -r ./tron/* ./out/; cp ./package.json ./out; npm run package-mac; npm run package-win; npm run package-linux",
 		"package-mac": "electron-packager ./out collider --overwrite --platform=darwin --arch=x64 --icon=./out/assets/icons/jam.png --prune=true --out=release-builds",
 		"package-win": "electron-packager ./out collider --overwrite --asar=true --platform=win32 --arch=ia32 --icon=./out/assets/icons/jam.png --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Collider JAM\"",
 		"package-linux": "electron-packager ./out collider --overwrite --asar=true --platform=linux --arch=x64 --icon=./out/assets/icons/jam.png --prune=true --out=release-builds",
 		"generate-dmg": "electron-installer-dmg ./release-builds/collider-darwin-x64 collider --out=release-builds --overwrite --icon ./out/assets/icons/play.icns",
 		"generate-deb": "electron-installer-debian --src release-builds/collider-linux-x64/ --arch amd64 --config debian.json",
-		"generate-exe": "node generateExe.js",
-		"pack": "jam pack; cp -r ./tron/* ./out/; build --dir",
-		"dist": "jam pack; cp -r ./tron/* ./out/; build"
+		"generate-exe": "node generateExe.js"
 	},
 	"dependencies": {
 		"collider-boot.mix": "git+https://github.com/invider/collider-boot.mix.git",
@@ -25,53 +22,9 @@
 		"collider.mix": "git+https://github.com/invider/collider.mix.git"
 	},
 	"devDependencies": {
-		"electron": "latest",
-		"electron-builder": "latest",
+		"electron": "4.2.0",
 		"electron-packager": "latest",
 		"electron-installer-debian": "latest",
-		"electron-winstaller": "latest"
-	 },
-
-	"build": {
-		"appId": "collider",
-		"productName": "Collider JAM App",
-		"copyright": "Copyright (C) 2019 Igor Khotin & Co.",
-		"directories": {
-			"buildResources": "./tron",
-			"output": "./out.dist",
-			"app": "./out"
-		},
-		"mac": {
-		  "category": "public.app-category.games",
-		  "icon": "assets/icons/jam.icns"
-		},
-		"dmg": {
-		  "background": "./tron/assets/background.png",
-		  "icon": "assets/icons/jam.icns",
-		  "iconSize": 128,
-		  "title": "Collider JAM App Installation Package",
-		  "contents": [
-			{
-			  "x": 110,
-			  "y": 150
-			},
-			{
-			  "x": 240,
-			  "y": 150,
-			  "type": "link",
-			  "path": "/Applications"
-			}
-		  ]
-		},
-		"linux": {
-		  "target": [
-			"AppImage",
-			"deb"
-		  ]
-		},
-		"win": {
-		  "target": "squirrel",
-		  "icon": "tron/assets/icons/icon.ico"
-		}
+		"electron-winstaller": "3.0.4"
 	}
 }
