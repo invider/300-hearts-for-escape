@@ -1,5 +1,8 @@
 # outbreak-n-cure
-Specially for Ludum Dare 44
+_Specially for Ludum Dare 44_
+
+## [Play at itch.io](https://ingwar.itch.io/300-hearts-for-escape)
+
 
 ## How to Run
 
