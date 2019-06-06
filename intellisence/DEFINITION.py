@@ -1,0 +1,4 @@
+
+#echo $WORKSPACE_DIR/.vscode.lng 2 1
+#echo $WORKSPACE_DIR/.vscode.lng 3 0
+
