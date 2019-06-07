@@ -11,11 +11,11 @@ def getPath(p):
     return p.replace("/", "")
 
 def getPostfix(findVal, o):
-    res = findVal + re.split(re.escape(findVal), o, flags=re.IGNORECASE)[-1]
-    print(findVal, o, res)
-    return res
-
-
+    res = re.split(re.escape(findVal), o, flags=re.IGNORECASE)[-1]
+    lastLength = len(findVal) + len(res)
+    print(lastLength, res, o, o[:-lastLength])
+    return o[:-lastLength - 1]
+    
 path = ''
 
 files = [f for f in glob.glob(path + "**/*")]

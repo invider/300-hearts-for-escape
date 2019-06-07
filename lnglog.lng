@@ -1,11 +1,13 @@
-('in', 'pub/index.html', 'index.html')
-('in', 'tron/main.js', 'in.js')
-('in', 'intellisence/DEFINITION.py', 'inITION.py')
-('in', 'intellisence/INIT.py', 'inIT.py')
-('in', 'intellisence/INTELLISENCE.py', 'inTELLISENCE.py')
-index.html
-in.js
-inITION.py
-inIT.py
-inTELLISENCE.py
-INTELLISENCE in. /home/shaddy/workspace/300-hearts-for-escape/intellisence/INTELLISENCE.py
+(1, '', 'mod/dna', 'mod/dn')
+(2, 'b', 'mod/lab', 'mod/l')
+(2, 'p', 'mod/trap', 'mod/tr')
+(6, 'ssets', 'tron/assets', 'tron/')
+(6, 'in.js', 'tron/main.js', 'tron/m')
+(8, 'ge.json', 'tron/package.json', 'tron/pack')
+mod.d
+mod.
+mod.t
+tron
+tron.
+tron.pac
+INTELLISENCE a. /home/shaddy/workspace/300-hearts-for-escape/debian.json
