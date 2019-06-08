@@ -1,6 +1,5 @@
 #!/bin/bash
-SCRIPT=$(readlink -f $0)
-SCRIPTPATH=`dirname $SCRIPT`
+SCRIPTPATH="$(cd "$(dirname "$0")" ; pwd -P )"
 export WORKSPACE_DIR=$SCRIPTPATH
 cd $SCRIPTPATH
 LOGFILE=$WORKSPACE_DIR/lnglog.log
