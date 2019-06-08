@@ -2,24 +2,42 @@
 #echo p INTELLISENCE1
 #echo INTELLISENCE2
 #print("f INTELLISENCE")
-import glob, sys, re
+import glob, sys, re, os
 findVal = sys.argv[2]
 findValNodot = findVal.strip(".")
 #print(findValNodot)
 
-def getPath(p):
-    return p.replace("/", "")
+ignoredirs=[".git", ".vscode"]
 
-def getPostfix(findVal, o):
-    res = re.split(re.escape(findVal), o, flags=re.IGNORECASE)[-1]
-    lastLength = len(findVal) + len(res)
-    print(lastLength, res, o, o[:-lastLength])
-    return o[:-lastLength - 1]
+def getFiles(dir):
+    result = []
+    files = os.listdir(dir)
+    for f in files:
+        fullName = os.path.join(dir, f)
+        if os.path.isdir(fullName):
+            if f not in ignoredirs:
+                result += getFiles(fullName)
+        else:
+            result.append(fullName)
+    return result
+
+
+def getPath(p):
+    return p.replace("/", ".").replace("..", ".").strip(".").strip(".js")
+
+def getPostfix(o):
+#    print("searching:", o)
+    return o.replace("mod." + findVal, "")
     
+def check(o):
+    return o.startswith("mod." + findVal)
+
 path = ''
 
-files = [f for f in glob.glob(path + "**/*")]
-files = filter(lambda o: findValNodot in getPath(o).lower(), files)
-files = map(lambda o: getPostfix(findValNodot, o), files)
+files = getFiles("./")
+files = map(lambda o: getPath(o), files)
+files = filter(lambda o: check(o), files)
+files = map(lambda o: getPostfix(o), files)
+
 for f in files:
     print(f.replace("/", "."))

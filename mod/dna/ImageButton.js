@@ -26,7 +26,6 @@ ImageButton.prototype.draw = function() {
     let sh = 0
     if (this.toggled) sh = -1
     else if (this._hover) sh = 1
-
     ctx.drawImage(this.img, this.x-sh, this.y-sh, this.w+sh*2, this.h+sh*2)
 }
 

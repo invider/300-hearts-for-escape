@@ -12,7 +12,6 @@ function getInstallerConfig() {
   console.log('creating windows installer')
   const rootPath = path.join('./')
   const outPath = path.join(rootPath, 'release-builds')
-
   return Promise.resolve({
     appDirectory: path.join(outPath, 'collider-win32-ia32/'),
     authors: 'Igor Khotin',
