@@ -21,9 +21,21 @@ def getFiles(dir):
             result.append(fullName)
     return result
 
+def rreplace(s, v):
+    if s.endswith(v):
+        return s[:-len(v)]
+    else:
+        return s
 
 def getPath(p):
-    return p.replace("/", ".").replace("..", ".").strip(".").strip(".js")
+    a = p.replace("/", ".").replace("..", ".").strip(".")
+    a = rreplace(a, ".js")
+    a = rreplace(a, ".wav")
+    a = rreplace(a, ".txt")
+    a = rreplace(a, ".csv")
+    a = rreplace(a, ".json")
+    return a
+
 
 def getPostfix(o):
 #    print("searching:", o)
