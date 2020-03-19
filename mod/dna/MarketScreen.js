@@ -128,6 +128,8 @@ MarketScreen.prototype.spawnResPair = function(resource, baseY) {
 }
 
 MarketScreen.prototype.adjust = function() {
+    if (!this.__) return
+
     this.scale = lab.hud.island.scale
 
     this._w = this.background.width

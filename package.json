@@ -25,13 +25,12 @@
 		"collider.mix": "git+https://github.com/invider/collider.mix.git"
 	},
 	"devDependencies": {
-		"electron": "latest",
-		"electron-builder": "latest",
-		"electron-packager": "latest",
+		"electron": "^8.1.1",
+		"electron-builder": "^22.4.1",
 		"electron-installer-debian": "latest",
+		"electron-packager": "^14.2.1",
 		"electron-winstaller": "latest"
-	 },
-
+	},
 	"build": {
 		"appId": "collider",
 		"productName": "Collider JAM App",
@@ -42,36 +41,36 @@
 			"app": "./out"
 		},
 		"mac": {
-		  "category": "public.app-category.games",
-		  "icon": "assets/icons/jam.icns"
+			"category": "public.app-category.games",
+			"icon": "assets/icons/jam.icns"
 		},
 		"dmg": {
-		  "background": "./tron/assets/background.png",
-		  "icon": "assets/icons/jam.icns",
-		  "iconSize": 128,
-		  "title": "Collider JAM App Installation Package",
-		  "contents": [
-			{
-			  "x": 110,
-			  "y": 150
-			},
-			{
-			  "x": 240,
-			  "y": 150,
-			  "type": "link",
-			  "path": "/Applications"
-			}
-		  ]
+			"background": "./tron/assets/background.png",
+			"icon": "assets/icons/jam.icns",
+			"iconSize": 128,
+			"title": "Collider JAM App Installation Package",
+			"contents": [
+				{
+					"x": 110,
+					"y": 150
+				},
+				{
+					"x": 240,
+					"y": 150,
+					"type": "link",
+					"path": "/Applications"
+				}
+			]
 		},
 		"linux": {
-		  "target": [
-			"AppImage",
-			"deb"
-		  ]
+			"target": [
+				"AppImage",
+				"deb"
+			]
 		},
 		"win": {
-		  "target": "squirrel",
-		  "icon": "tron/assets/icons/icon.ico"
+			"target": "squirrel",
+			"icon": "tron/assets/icons/icon.ico"
 		}
 	}
 }

@@ -25,7 +25,7 @@ module.exports = function() {
     market.adjust()
     market.hide()
 
-    const popup = sys.spawn('Popup', {
+    const popup = sys.spawn('PopupScreen', {
         Z: 14,
         name: 'popup'
     }, 'hud')
@@ -45,7 +45,7 @@ module.exports = function() {
             island.town['dareburg'].unlock()
         }), 1000)
 
-    env.debug = {}
-    mod.debug.env.info = env.debug
-    mod.debug.hidden = true
+    //env.debug = {}
+    //mod.debug.env.info = env.debug
+    //mod.debug.hidden = true
 }

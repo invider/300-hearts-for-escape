@@ -24,6 +24,8 @@ Screen.prototype.init = function() {
 }
 
 Screen.prototype.adjust = function() {
+    if (!this.__) return
+
     // calculate scale
     const aspect = this.background.width/this.background.height
     const hscale = this.__.w/(this.background.width + this.border*2)
@@ -48,6 +50,10 @@ Screen.prototype.drawBackground = function() {
     ctx.drawImage(this.background, 0, 0, this.background.width, this.background.height)
     //ctx.strokeStyle = '#ffff00'
     //ctx.strokeRect(0, 0, this.w, this.h)
+}
+
+Screen.prototype.drawComponents = function() {
+    Container.prototype.drawContent.call(this)
 }
 
 Screen.prototype.draw = function() {

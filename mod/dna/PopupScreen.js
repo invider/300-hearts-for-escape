@@ -75,6 +75,8 @@ const PopupScreen = function(dat) {
 PopupScreen.prototype = Object.create(Screen.prototype)
 
 PopupScreen.prototype.adjust = function() {
+    if (!this.__) return
+
     this.scale = lab.hud.island.scale
 
     this._w = this.background.width
