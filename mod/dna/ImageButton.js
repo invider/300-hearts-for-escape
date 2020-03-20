@@ -21,6 +21,14 @@ ImageButton.prototype.adjust = function() {
     this.h = this.img.height
 }
 
+ImageButton.prototype.sfxOver = function() {
+    lib.sfx(res.sfx.selectHi, 0.3)
+}
+
+ImageButton.prototype.sfxClick = function() {
+    lib.sfx(res.sfx.selectLow, 0.6)
+}
+
 ImageButton.prototype.draw = function() {
     const st = this.getState()
     let sh = 0
@@ -28,5 +36,10 @@ ImageButton.prototype.draw = function() {
     else if (this._hover) sh = 1
     ctx.drawImage(this.img, this.x-sh, this.y-sh, this.w+sh*2, this.h+sh*2)
 }
+
+ImageButton.prototype.onMouseEnter = function() {
+    this.sfxOver()
+}
+
 
 module.exports = ImageButton

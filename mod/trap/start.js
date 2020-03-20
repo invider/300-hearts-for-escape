@@ -9,6 +9,7 @@ module.exports = function() {
     const hud = sys.spawn('hud/Hud', {
         Z: 10,
         name: 'hud',
+        hidden: true,
     })
 
     const island = sys.spawn('MapScreen', {
@@ -39,11 +40,7 @@ module.exports = function() {
 
     //lib.math._seed = Date.now()
 
-    setTimeout(() => popup.show(
-        res.txt.welcome, () => {
-            island.town['dareburg'].known = true
-            island.town['dareburg'].unlock()
-        }), 1000)
+    trap('fadein')
 
     //env.debug = {}
     //mod.debug.env.info = env.debug

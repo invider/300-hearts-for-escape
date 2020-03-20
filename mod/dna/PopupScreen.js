@@ -31,7 +31,7 @@ const PopupScreen = function(dat) {
         },
         onFocus: function() {},
         onClick: function() {
-            lib.sfx(res.sfx.click, 0.6)
+            lib.sfx(res.sfx.selectLow, .6)
             popup.hide()
             if (sys.isFun(popup.postAction)) popup.postAction()
         },
@@ -61,7 +61,7 @@ const PopupScreen = function(dat) {
         onFocus: function() {},
         onClick: function() {
             popup.cursor += popup.nextBatch
-            lib.sfx(res.sfx.click, 0.6)
+            lib.sfx(res.sfx.selectLow, .6)
         },
         onKeyDown: function(e) {
             if (e.key === 'Enter' || e.key === 'Escape' || e.key === ' ') {

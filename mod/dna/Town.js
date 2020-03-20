@@ -41,7 +41,7 @@ Town.prototype.onMouseDrag = function() {}
 
 Town.prototype.onMouseEnter = function() {
     if (!this.locked) {
-        lib.sfx(res.sfx.select, 0.4)
+        lib.sfx(res.sfx.selectMid, 0.4)
     }
 }
 
