@@ -18,7 +18,7 @@ const MarketScreen = function(dat) {
                 if (!market.tradeGate(close)) return
             }
             market.hide()
-            lib.sfx(res.sfx.denied, 0.6)
+            sfx.play('denied', 0.6)
         }
     }, this)
     const complete = sys.spawn('ImageButton', {
@@ -49,7 +49,9 @@ MarketScreen.prototype.buy = function(rs) {
     const stock = lab.hero.location.stats.resources[rs]
     if (this.trade[rs] < 0 || this.trade[rs] < stock) {
         this.trade[rs] ++
-        lib.sfx(res.sfx.selectMid, 0.6)
+        sfx.play('selectMid', 0.6)
+    } else {
+        sfx.play('click', 0.6)
     }
 }
 
@@ -57,7 +59,9 @@ MarketScreen.prototype.sell = function(rs) {
     const own = lab.hero[rs]
     if (this.trade[rs] > 0 || this.trade[rs] > -own) {
         this.trade[rs] --
-        lib.sfx(res.sfx.selectMid, 0.6)
+        sfx.play('selectMid', 0.6)
+    } else {
+        sfx.play('click', 0.6)
     }
 }
 
@@ -83,7 +87,10 @@ MarketScreen.prototype.isTradePossible = function() {
 }
 
 MarketScreen.prototype.closeTrade = function() {
-    if (!this.isTradePossible()) return
+    if (!this.isTradePossible()) {
+        sfx.play('click', 0.6)
+        return
+    }
 
     const price = lab.hero.location.stats.prices
     Object.keys(this.trade).forEach(rs => {
@@ -98,7 +105,7 @@ MarketScreen.prototype.closeTrade = function() {
     })
     this.hide()
     if (sys.isFun(this.postTradeAction)) this.postTradeAction()
-    lib.sfx(res.sfx.selectLow, .7)
+    sfx.play('selectLow', .7)
 }
 
 MarketScreen.prototype.spawnResPair = function(resource, baseY) {
