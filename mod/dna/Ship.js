@@ -6,6 +6,7 @@ const SAIL_SPEED = 10
 const SPEED = 0.04
 
 const Ship = function(dat) {
+    this.Z = 2
     this.name = 'ship'
     this.img = res.ship
     this.x = 239

@@ -68,31 +68,56 @@ Hero.prototype.arrived = function(town) {
 Hero.prototype.travelTo = function(town) {
     if (!town || this.location === town) return
 
-    const days = this.location.daysToTarget(town)
+    const origin = this.location
+    const days = origin.daysToTarget(town)
+    const time = days * env.tuning.travelDayTime
     const bleeding = Math.round(days * (env.tuning.travelHealth + env.tuning.desieseFactor*env.day))
-    env.day += days
-    this.health -= bleeding 
 
-    env.turn ++
-    this.arrived(town)
+    const hero = this
+    function onArrived() {
+        env.day += days
+        hero.health -= bleeding 
+        env.turn ++
+        hero.arrived(town)
 
-    if (this.health <= 0) {
-        this.die()
-    } else if (this.health >= env.tuning.winHealth
-            && this.location.name === env.tuning.winTown) {
-        this.win()
-    } else {
-        const hero = this
-        let afterPopup = function() {
-            hero.toMarket();
+        if (hero.health <= 0) {
+            hero.die()
+        } else if (hero.health >= env.tuning.winHealth
+                && origin.name === env.tuning.winTown) {
+            hero.win()
+        } else {
+            let afterPopup = function() {
+                hero.toMarket();
+            }
+            if (sys.isFun(town.stats.ok)) afterPopup = town.stats.ok
+
+            lab.hud.popup.show(
+                'In ' + days + " days you've lost " + bleeding + ' hearts!\n'
+                + res.txt.loc.welcomeTo + ' ' + town.name + '!\n'
+                + town.stats.message, afterPopup)
+            lib.sfx(res.sfx.arrived, 0.6)
         }
-        if (sys.isFun(town.stats.ok)) afterPopup = town.stats.ok
+    }
 
-        lab.hud.popup.show(
-            'In ' + days + " days you've lost " + bleeding + ' hearts!\n'
-            + res.txt.loc.welcomeTo + ' ' + town.name + '!\n'
-            + town.stats.message, afterPopup)
-        lib.sfx(res.sfx.arrived, 0.6)
+    this.travel = {
+        days: days,
+        time: time,
+        origin: origin,
+        destination: town,
+        dx: (origin.x - town.x)/time,
+        dy: (origin.y - town.y)/time,
+        onArrived: onArrived,
+    }
+    hero.location = false
+}
+
+Hero.prototype.evo = function(dt) {
+    if (this.travel) {
+        this.travel.time -= dt
+        if (this.travel.time <= 0) {
+            this.travel.onArrived()
+            this.travel = false
+        }
     }
 }
 

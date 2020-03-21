@@ -2,6 +2,7 @@
 
 const Town = function(dat) {
     this.Z = 1
+    this.keepZ = true
     this.w = 0
     this.h = 0
     this.locked = true

@@ -33,6 +33,7 @@ module.exports = function() {
     popup.adjust()
 
     hero.arrived(island.townList[0])
+    island.spawn('shaddow')
 
     env.day = 1
     env.turn = 0

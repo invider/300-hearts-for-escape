@@ -8,5 +8,6 @@
     "startGold": 0,
     "travelSpeed": 60,
     "travelHealth": 2,
-    "desieseFactor": 0.01
+    "desieseFactor": 0.01,
+    "travelDayTime": 0.5
 }
