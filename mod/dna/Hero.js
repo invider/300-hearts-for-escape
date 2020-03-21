@@ -75,16 +75,15 @@ Hero.prototype.travelTo = function(town) {
 
     const hero = this
     function onArrived() {
-        env.day += days
-        hero.health -= bleeding 
         env.turn ++
         hero.arrived(town)
 
         if (hero.health <= 0) {
             hero.die()
         } else if (hero.health >= env.tuning.winHealth
-                && origin.name === env.tuning.winTown) {
+                && town.name === env.tuning.winTown) {
             hero.win()
+
         } else {
             let afterPopup = function() {
                 hero.toMarket();
@@ -102,21 +101,61 @@ Hero.prototype.travelTo = function(town) {
     this.travel = {
         days: days,
         time: time,
+        hold: env.tuning.arrivalDelay,
         origin: origin,
         destination: town,
         dx: (origin.x - town.x)/time,
         dy: (origin.y - town.y)/time,
+
+        day: {
+            left: days,
+            delta: time/days,
+            time: 0,
+        },
+        blood: {
+            left: bleeding,
+            delta: time/bleeding,
+            time: 0,
+        },
+
         onArrived: onArrived,
     }
     hero.location = false
 }
 
 Hero.prototype.evo = function(dt) {
-    if (this.travel) {
-        this.travel.time -= dt
-        if (this.travel.time <= 0) {
-            this.travel.onArrived()
-            this.travel = false
+    const travel = this.travel
+    if (travel) {
+        if (travel.time > 0) {
+            travel.time -= dt
+
+        } else if (travel.time < 0) {
+            travel.time = 0
+
+        } else if (travel.time === 0) {
+            travel.hold -= dt
+
+            if (travel.hold <= 0) {
+                travel.onArrived()
+                this.travel = false
+            }
+        }
+
+        if (travel.day.left > 0) {
+            travel.day.time += dt
+            if (travel.day.time > travel.day.delta) {
+                env.day ++
+                travel.day.left --
+                travel.day.time = 0
+            }
+        }
+        if (travel.blood.left > 0) {
+            travel.blood.time += dt
+            if (travel.blood.time > travel.blood.delta) {
+                this.health --
+                travel.blood.left --
+                travel.blood.time = 0
+            }
         }
     }
 }

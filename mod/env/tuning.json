@@ -9,5 +9,6 @@
     "travelSpeed": 60,
     "travelHealth": 2,
     "desieseFactor": 0.01,
-    "travelDayTime": 0.5
+    "travelDayTime": 0.5,
+    "arrivalDelay": 0.5
 }

@@ -5,3 +5,4 @@ Kyrylo Cherkashyn
 Anatoly Yakushko
 
 Specially for Ludum Dare 44
+"Your life is currency"

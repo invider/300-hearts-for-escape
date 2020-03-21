@@ -41,22 +41,26 @@ Town.prototype.onMouseMove = function() {}
 Town.prototype.onMouseDrag = function() {}
 
 Town.prototype.onMouseEnter = function() {
-    if (!this.locked) {
+    if (!this.locked && !lab.hero.travel) {
         this.hoverTime = 0
         lib.sfx(res.sfx.selectMid, 0.4)
     }
 }
 
 Town.prototype.onMouseDown = function() {
-    this.toggled = true
+    if (!lab.hero.travel) {
+        this.toggled = true
+    }
 }
 
 Town.prototype.onMouseUp = function() {
-    this.toggled = false
+    if (!lab.hero.travel) {
+        this.toggled = false
+    }
 }
 
 Town.prototype.onClick = function() {
-    if (!this.locked) {
+    if (!this.locked && !lab.hero.travel) {
         lab.hero.toMarket(this) // try to go to market
         lab.hero.travelTo(this) // try to travel
     }
@@ -73,7 +77,7 @@ Town.prototype.draw = function() {
 
     let f = 0
     let img = this.img1
-    if (!this.locked) {
+    if (!this.locked && !lab.hero.travel) {
         if (this._captured && this._hover) {
             f = env.style.town.selectedScale
         } else if (this._hover) {
@@ -105,7 +109,10 @@ Town.prototype.draw = function() {
             this.y + this.h + 5)
     }
 
-    if (this.known && !this.locked && this._hover
+    if (this.known
+                && !this.locked
+                && this._hover
+                && !lab.hero.travel
                 && this !== lab.hero.location
                 && this.hoverTime > env.style.town.daysDelay) {
         // time to destination
