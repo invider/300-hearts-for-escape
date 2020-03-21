@@ -6,7 +6,10 @@
         "current": "#000000",
         "visited": "#000000",
         "hoverScale": 1,
-        "selectedScale": -1
+        "selectedScale": -1,
+        "days": "#000000",
+        "daysDelay": 0.7,
+        "daysFadein": 0.5 
     },
     "hint": {
         "font": "8px coolville",

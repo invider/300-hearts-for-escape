@@ -90,6 +90,7 @@ Hero.prototype.travelTo = function(town) {
 
         lab.hud.popup.show(
             'In ' + days + " days you've lost " + bleeding + ' hearts!\n'
+            + res.txt.loc.welcomeTo + ' ' + town.name + '!\n'
             + town.stats.message, afterPopup)
         lib.sfx(res.sfx.arrived, 0.6)
     }

@@ -41,6 +41,7 @@ Town.prototype.onMouseDrag = function() {}
 
 Town.prototype.onMouseEnter = function() {
     if (!this.locked) {
+        this.hoverTime = 0
         lib.sfx(res.sfx.selectMid, 0.4)
     }
 }
@@ -58,6 +59,10 @@ Town.prototype.onClick = function() {
         lab.hero.toMarket(this) // try to go to market
         lab.hero.travelTo(this) // try to travel
     }
+}
+
+Town.prototype.evo = function(dt) {
+    if (this._hover) this.hoverTime += dt
 }
 
 Town.prototype.draw = function() {
@@ -86,7 +91,7 @@ Town.prototype.draw = function() {
         const img = res.sign
         ctx.drawImage(img,
             this.x + this.w/2 - img.width/2,
-            this.y + this.h+ 1,
+            this.y + this.h + 1,
             img.width, img.height)
 
         ctx.font = env.style.font
@@ -98,6 +103,31 @@ Town.prototype.draw = function() {
         ctx.fillText(this.name,
             this.x + this.w/2,
             this.y + this.h + 5)
+    }
+
+    if (this.known && !this.locked && this._hover
+                && this !== lab.hero.location
+                && this.hoverTime > env.style.town.daysDelay) {
+        // time to destination
+        const days = this.daysToTarget(lab.hero.location)
+        const img = res.signShort
+
+        const xl = this.x + this.w/2
+        const xs = xl - img.width/2
+        const yl = this.y + this.h + img.height*1.5 + 1
+        const ys = yl - img.height/2 + 1
+
+        alpha(min((this.hoverTime - env.style.town.daysDelay)/env.style.town.daysFadein, 1))
+
+        image(img, xs, ys, img.width, img.height)
+
+        font(env.style.font)
+        fill(env.style.town.visited)
+        alignCenter()
+        baseMiddle()
+        text(`${days} ${res.txt.loc.days}`, xl, yl)
+
+        alpha(1)
     }
 
     /*
