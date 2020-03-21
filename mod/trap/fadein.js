@@ -16,6 +16,12 @@ function fadein() {
                     lab.hud.island.town['dareburg'].known = true
                     lab.hud.island.town['dareburg'].unlock()
                 }), 1000)
-            }
+        },
+
+        onHidden: function() {
+            trap('ambient')
+        },
+
     })
+
 }

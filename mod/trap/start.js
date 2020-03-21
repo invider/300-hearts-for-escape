@@ -38,10 +38,10 @@ module.exports = function() {
     env.day = 1
     env.turn = 0
     env.gameover = false
-
     //lib.math._seed = Date.now()
 
     trap('fadein')
+
 
     //env.debug = {}
     //mod.debug.env.info = env.debug
