@@ -263,5 +263,13 @@ MarketScreen.prototype.drawComponents = function() {
     this.drawTotalLine(env.style.market.totalY)
 }
 
+MarketScreen.prototype.onKeyDown = function(e) {
+    if (e.code === 'Escape') {
+        this.close.onClick()
+    } else if (e.code === 'Enter' || e.code === 'Escape' || e.code === 'Space') {
+        this.complete.onClick()
+    }
+}
+
 module.exports = MarketScreen
 

@@ -88,9 +88,8 @@ Town.prototype.draw = function() {
 
     if (this.known) {
         // draw city sign
-        const img = res.sign
-        ctx.drawImage(img,
-            this.x + this.w/2 - img.width/2,
+        const img = lab.hero.location === this? res.signHi : res.sign
+        ctx.drawImage(img, this.x + this.w/2 - img.width/2,
             this.y + this.h + 1,
             img.width, img.height)
 
