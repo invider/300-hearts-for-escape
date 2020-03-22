@@ -4,5 +4,11 @@ Igor Khotin
 Kyrylo Cherkashyn
 Anatoly Yakushko
 
++ additional sounds by
+klankbeeld
+InspectorJ 
+Pfannkuchn
+of freesound.org
+
 Specially for Ludum Dare 44
 "Your life is currency"

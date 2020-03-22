@@ -41,6 +41,7 @@ Hero.prototype.win = function() {
             trap('titles')
         })
     lab.hud.island.stop()
+    trap('win')
 }
 
 Hero.prototype.rob = function() {
@@ -73,10 +74,17 @@ Hero.prototype.travelTo = function(town) {
     const time = days * env.tuning.travelDayTime
     const bleeding = Math.round(days * (env.tuning.travelHealth + env.tuning.desieseFactor*env.day))
 
+    sfx.play('selectLow')
+
+    res.sfx.footsteps.volume = .7
+    res.sfx.footsteps.currentTime = 0
+    res.sfx.footsteps.play()
+
     const hero = this
     function onArrived() {
         env.turn ++
         hero.arrived(town)
+        res.sfx.footsteps.pause()
 
         if (hero.health <= 0) {
             hero.die()
