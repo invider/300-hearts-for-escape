@@ -76,5 +76,6 @@ out*
 # collider.jam
 units.json
 types.ts
+dist
 
 *.local

@@ -3,6 +3,6 @@ SCRIPTPATH="$(cd "$(dirname "$0")" ; pwd -P )"
 export WORKSPACE_DIR=$SCRIPTPATH
 cd $SCRIPTPATH
 LOGFILE=$WORKSPACE_DIR/lnglog.log
-python ./intellisence/$1.py $@ > $LOGFILE 2>&1
+node ./intellisence/$1.js $@ > $LOGFILE 2>&1
 cat $LOGFILE
 echo $@ >> $LOGFILE

@@ -36,11 +36,10 @@ def getPath(p):
     a = rreplace(a, ".json")
     return a
 
-
 def getPostfix(o):
 #    print("searching:", o)
     return o.replace("mod." + findVal, "")
-    
+
 def check(o):
     return o.startswith("mod." + findVal)
 
