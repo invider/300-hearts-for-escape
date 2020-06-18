@@ -3,11 +3,9 @@
 // boot config values
 let base = hsl(.1, 0, 0)
 let content = hsl(.54, 1, .5)
-let contentLow = hsl(.1, 0, 0)
-let contentErr = hsl(.01, 1, .55) // collider orange
+//let content = hsl(.1, 1, .5)      // collider orange
+let contentErr = hsl(.01, 1, .55)   // error red
 let fadeBase = hsl(.1, 0, 0)
-//let content = hsl(.1, 1, .5) // collider orange
-//const COLOR = hsl(.54, 1, .5)
 //const COLOR = hsl(.98, 1, .6)
 //const COLOR = hsl(.1, 1, .5)
 //const COLOR = hsl(.3, 1, .5)
@@ -17,6 +15,8 @@ let power = 2
 let hold = 3.5
 let fade = 1
 let wait = 0.5
+let bootSfx = 'boot'
+let sfxVolume = .5
 
 // boot state
 let time = 0
@@ -70,19 +70,17 @@ const MAX_ANGLE = PI/2
 const worms = []
 const targets = []
 
-
-
-
 function init() {
     if (env.config.boot) {
         const bt = env.config.boot
-        hold = bt.hold || hold
-        fade = bt.fade || fade
-        wait = bt.wait || wait
-        base = bt.base || base
-        content = bt.content || content
-        contentLow = bt.contentLow || contentLow
-        fadeBase = bt.fadeBase || fadeBase
+        hold = bt.hold              || hold
+        fade = bt.fade              || fade
+        wait = bt.wait              || wait
+        base = bt.base              || base
+        content = bt.content        || content
+        fadeBase = bt.fadeBase      || fadeBase
+        bootSfx = bt.sfx            || bootSfx
+        sfxVolume = bt.volume       || sfxVolume
     }
     if (env.config.fast) hold = 0
 }
@@ -520,7 +518,9 @@ function evoBoot(dt) {
         if (time >= hold) {
             time = 0
             state = 'fading'
-            sfx(res.sfx.chord, .5)
+
+            const sound = res.sfx[bootSfx]
+            if (sound) sfx(sound, sfxVolume)
         }
         break;
 
