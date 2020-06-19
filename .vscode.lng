@@ -3,6 +3,7 @@ SCRIPTPATH="$(cd "$(dirname "$0")" ; pwd -P )"
 export WORKSPACE_DIR=$SCRIPTPATH
 cd $SCRIPTPATH
 LOGFILE=$WORKSPACE_DIR/lnglog.log
-node ./intellisence/$1.js $@ > $LOGFILE 2>&1
+ERRFILE=$WORKSPACE_DIR/lngerr.log
+node ./intellisence/$1.js $@ > $LOGFILE 2> $ERRFILE
 cat $LOGFILE
 echo $@ >> $LOGFILE

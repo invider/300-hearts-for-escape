@@ -25,7 +25,7 @@ let label = ''
 
 
 // boot implementation values
-const BASE = width() > height()? height() : width()
+const BASE = env.width > env.height? env.height : env.width
 const FBASE = BASE * .04
 
 let labelFont = FBASE+'px moon'
