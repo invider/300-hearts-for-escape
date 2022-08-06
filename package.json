@@ -25,7 +25,7 @@
 		"collider.mix": "git+https://github.com/invider/collider.mix.git"
 	},
 	"devDependencies": {
-		"electron": "^6.1.12",
+		"electron": "^15.5.5",
 		"electron-builder": "^5.5.0",
 		"electron-installer-debian": "latest",
 		"electron-packager": "^13.1.1",
